@@ -1,0 +1,139 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span>Thông tin website</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>                                                  
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <?php
+                    if(isset($alert)){
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>-->
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>
+                        <!-- <button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                       <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+                        
+                        <form method="post" id="form-admin" class='form form-horizontal validate-form' style='margin-bottom: 0;' enctype="multipart/form-data">
+                            <div class="content-tab tab-content1">
+                                 
+                                <div class="form-group">
+                                    <div class="control-label col-sm-3">
+                                        <label for="validation_url">Địa chỉ website</label>
+                                        <small class="help-block">http://</small>
+                                    </div>
+                                    <div class="col-sm-6 controls">
+                                        <input class="form-control"   id="validation_url" value="<?php echo $data_setting['website_url']?>" name="url" placeholder="URL" type="text">
+                                    </div>
+                                </div>
+                                      <div class='form-group'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Email</label>
+                                        <div class='col-sm-6 controls'>
+                                            <input class='form-control'  value="<?php echo $data_setting['email']?>" id='validation_name' name="email"  placeholder=' Tiêu đề' type='text' >
+                                        </div>
+                                    </div>  
+                                 <div class='form-group'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Địa chỉ</label>
+                                        <div class='col-sm-6 controls'>
+                                            <input class='form-control'  value="<?php echo $data_setting['address']?>" id='validation_name' name="address"  placeholder=' Tiêu đề' type='text' >
+                                        </div>
+                                    </div> 
+                                <div class='form-group'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Hotline</label>
+                                        <div class='col-sm-6 controls'>
+                                            <input class='form-control'  value="<?php echo $data_setting['hotline']?>" id='validation_name' name="hotline"  placeholder=' Tiêu đề' type='text' >
+                                        </div>
+                                    </div> 
+                                <div class='form-group'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Điện thoại 1</label>
+                                        <div class='col-sm-6 controls'>
+                                            <input class='form-control' value="<?php echo $data_setting['phone1']?>" id='validation_name' name="phone1"  placeholder=' Tiêu đề' type='text' >
+                                        </div>
+                                    </div> 
+                                <div class='form-group'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Điện thoại 2</label>
+                                        <div class='col-sm-6 controls'>
+                                            <input class='form-control'  value="<?php echo $data_setting['phone2']?>" id='validation_name' name="phone2"  placeholder=' Tiêu đề' type='text' >
+                                        </div>
+                                    </div>
+                                   <div class='form-group'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Footer</label>
+                                        <div class='col-sm-6 controls'>
+                                            <input class='form-control' value="<?php echo $data_setting['footer']?>" id='validation_name' name="footer"  placeholder=' Tiêu đề' type='text' >
+                                        </div>
+                                    </div>
+                                
+                                    <div class='form-group'>
+                                        <label class='control-label  col-sm-3' for='validation_name'>Logo</label>
+                                       
+                                        <div class='col-sm-2 controls'>                                                                                                           
+                                            <span class='btn btn-success fileinput-button'>
+                                                <i class='icon-upload-alt icon-white'></i>
+                                                <span> Chọn ảnh...</span>
+                                                <input data-bfi-disabled='' multiple='' name='img' id="asd" type='file'>
+                                            </span>
+
+                                        </div>
+                                        <div class="col-sm-4"><img style="width:100%"id="img" src="<?php echo WEB_IMG.$data_setting['logo']?>" /></div>
+                                        
+                                    </div>
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-sm-6">
+                                             <p class="bg-warning" style="font-size:12px; font-style: italic">Cảnh báo - Hãy chọn ảnh có đúng kích thước lớn hơn hoặc bằng 255 x 64 đê upload</p>
+
+                                        </div>
+                                    </div>               
+                                <div class='form-group'>
+                                        <label class='control-label  col-sm-3' for='validation_name'>Favico</label>
+                                       
+                                        <div class='col-sm-2 controls'>                                                                                                           
+                                            <span class='btn btn-success fileinput-button'>
+                                                <i class='icon-upload-alt icon-white'></i>
+                                                <span> Chọn ảnh...</span>
+                                                <input data-bfi-disabled='' multiple='' name='favicon' id="favicon" type='file'>
+                                            </span>
+
+                                        </div>
+                                        <div class="col-sm-4"><img id="img-favicon" src="<?php echo WEB_IMG.$data_setting['favicon']?>" /></div>
+                                        
+                                    </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

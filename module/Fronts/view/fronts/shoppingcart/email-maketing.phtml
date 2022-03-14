@@ -1,0 +1,66 @@
+<?php
+
+use Zend\Session\Container;
+
+$container = new Container('shopcart');
+$arraycart = $container->cart;
+
+$session_customer_guest = new Container('customer_guest');
+$username_guest = $session_customer_guest->name_customer;
+$email_guest = $session_customer_guest->mail_customer;
+$phone_guest = $session_customer_guest->phone_customer;
+$address_guest = $session_customer_guest->address_customer;
+
+$session_user = new Container('userlogin');
+$username = $session_user->username;
+$emai_user = $session_user->email;
+$address_user = $session_user->address;
+$phone_user = $session_user->phone;
+?>
+
+<!-- page heading-->
+<h2 class="page-heading">
+    <span class="page-heading-title2">Test Email Maketing</span>
+</h2>
+<!-- ../page heading-->
+<div class="page-content checkout-page ">
+    <div class="load"></div>
+    <div id="content-checkout">
+    
+    <div class="box-border">
+        <form action="" method="post" id="form-by">
+             
+        <ul>
+            <li class="row">
+                <div class="col-sm-6">
+                    <label for="first_name" class="required">Tiêu Đề<span>*</span></label>
+                  <input type="text" class="form-control input" name="name" id="name" placeholder="Họ tên" value=""/>
+                    <span id="name1-error1" class="error"></span>
+                </div><!--/ [col] -->
+              
+            
+                <div class="col-sm-6">
+                    <label for="email_address" class="required">Email nhận</label>
+                    <input type="email" class="form-control input" name="email" id="email" placeholder="Email" value=""/>
+                    <span id="email-error1" class="error"></span>
+                </div><!--/ [col] -->
+            </li><!--/ .row -->
+            <li class="row">
+                <div class="col-sm-12">
+                    <label for="company_content">Nội Dung</label>
+                    <textarea class="form-control input" id="contents" name="content" style="width:100%; border: 1px solid #ccc;" rows="15" placeholder="Ghi chu"></textarea>
+                </div><!--/ [col] -->               
+            </li><!--/ .row -->
+           
+            <li>
+              
+                <button onclick="checkout(1);" class="button btn-checkout"> Send Mail</button>
+               
+                 
+            </li>
+        </ul>
+        </form>
+    </div>
+    </div>
+   
+</div>

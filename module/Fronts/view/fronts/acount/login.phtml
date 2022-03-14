@@ -1,0 +1,41 @@
+<div class="box-slider-left">
+    <div class="box-product">
+         <h2 class="page-heading">
+            <span class="page-heading-title2">Đăng nhập hệ thống</span>
+        </h2>
+        <div class="box-contact top-20">
+                   <?php
+                   if(isset($error)){ echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';}
+                   ?> 
+                        
+                  
+            <form class="form-horizontal" role="form" method="post" id="register-form">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Email
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Mật khẩu
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Mật khẩu">
+                    </div>
+                </div>               
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button  type="submit" class="button btn-send">Đăng nhập
+                        </button>
+                        <a href="<?php echo WEB_PATH ?>/tai-khoan/reset-password.html" class="color-pass"> Quên mật khẩu?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>

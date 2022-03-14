@@ -1,0 +1,92 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Sắp xếp danh mục <span class="sort_cart">Kéo thả danh mục vào vị trí thích hợp và lưu lại</span></span>
+                    </h1> 
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>
+                                
+                            </li>
+                            <li>
+                                <a href="<?php echo WEB_PATH.'/system/product/category/add'?>">
+                                    <button class="btn btn-primary"><i class="icon-plus"></i> Thêm mới</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <div class='box-header'>                       
+                        <button rel=".tab-content1" class="btn background-new">Sắp xếp danh mục trang chủ</button>
+                        <button rel=".tab-content2" class="btn">Sắp xếp danh mục menu</button>
+                       
+                    </div>
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                 <div class="content-tab tab-content1">
+                                <ul class="sort_menu">
+                                <?php
+                                foreach ($data as $key=>$value){
+                                    echo '<li id="item_'.$value['id'].'">'.$value['name'].'</li>';
+                                }
+                                ?>
+                                </ul>
+                                 <button class="btn btn-danger save_sort" style="margin-left: 40px;">Lưu</button>    
+                                 </div>
+                                <div class="content-tab tab-content2">
+                                    <ul class="sort_menu_main">
+                                <?php
+                                foreach ($data_menu as $key1=>$value1){
+                                    if($value1['parent']==='0'){
+                                    echo '<li id="menu_'.$value1['id'].'">'.$value1['name'].'</li>';
+                                    }
+                                }
+                                ?>
+                                </ul>
+                                    <button class="btn btn-danger save_sort_main" style="margin-left: 40px;">Lưu</button>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .select-cat{
+        display: none;
+    }
+    .sort_menu, .sort_menu_main {
+        padding-right: 40px;
+    }
+    .sort_menu li, .sort_menu_main li{
+        list-style: none;
+        line-height: 40px;
+        background: #246534;
+        color: #fff;
+        font-size: 16px;
+        padding-left: 30px;
+        margin-bottom: 2px;
+        cursor: pointer;
+    }
+    .sort_cart{
+        font-size: 12px;
+        color: #FF0000;
+        font-style: italic;
+    }
+</style>    

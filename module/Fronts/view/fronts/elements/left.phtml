@@ -1,0 +1,215 @@
+<div class="column col-xs-12 col-sm-3" id="left_column">
+    <!-- block category -->
+    <!--<div class="block left-module">
+        <p class="title_block">Infomations</p>
+        <div class="block_content">
+           
+            <div class="layered layered-category">
+                <div class="layered-content">
+                    <ul class="tree-menu">
+                        <li class="active"><span></span><a href="#">About Us</a></li>
+                        <li><span></span><a href="#">Delivery Information</a></li>
+                        <li><span></span><a href="#">Privacy Policy</a></li>
+                        <li><span></span><a href="#">Terms &amp; Conditions</a></li>
+                        <li><span></span><a href="#">Contact Us</a></li>
+                        <li><span></span><a href="#">FAQ</a></li>
+                        <li><span></span><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+         
+        </div>
+    </div>-->
+    <!-- ./block category  -->
+    <?php
+    if($filter=='true'){
+    ?>
+    <div class="block left-module filter-site">
+        <p class="title_block">Bộ lọc sản phẩm</p>
+        <div class="block_content filter-product">
+            <!-- layered -->
+            <div class="layered layered-filter-price">
+                <!-- filter categgory -->
+                <div class="layered_subtitle">Khoảng giá</div>
+                <div class="layered-content">
+                    <ul class="check-box-list">
+                        <li>
+                            <input type="checkbox" id="c1" name="price" value="1"/>
+                            <label for="c1">
+                                <span class="button"></span>
+                                0 đến 200.000<span class="count"><?php //if(isset($count_khoanggia[1])){echo count($count_khoanggia[1]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c2" name="price" value="2" />
+                            <label for="c2">
+                                <span class="button"></span>
+                                200.000 đến 500.000<span class="count"><?php //if(isset($count_khoanggia[2])){echo count($count_khoanggia[2]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c3" name="price" value="3"/>
+                            <label for="c3">
+                                <span class="button"></span>
+                                500.000 đến 700.000<span class="count"><?php //if(isset($count_khoanggia[3])){echo count($count_khoanggia[3]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c4" name="price" value="4" />
+                            <label for="c4">
+                                <span class="button"></span>
+                               700.000 đến 1.000.000<span class="count"><?php //if(isset($count_khoanggia[4])){echo count($count_khoanggia[4]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c5" name="price" value="5" />
+                            <label for="c5">
+                                <span class="button"></span>
+                                1.000.000 đến 3.000.000<span class="count"><?php //if(isset($count_khoanggia[5])){echo count($count_khoanggia[5]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c6" name="price" value="6" />
+                            <label for="c6">
+                                <span class="button"></span>
+                                3.000.000 đến 5.000.000<span class="count"><?php //if(isset($count_khoanggia[6])){echo count($count_khoanggia[6]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c7" name="price" value="7" />
+                            <label for="c7">
+                                <span class="button"></span>
+                                5.000.000 đến 10.000.000<span class="count"><?php //if(isset($count_khoanggia[7])){echo count($count_khoanggia[7]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="c8" name="price" value="8" />
+                            <label for="c8">
+                                <span class="button"></span>
+                                Trên 10.000.000<span class="count"><?php //if(isset($count_khoanggia[8])){echo count($count_khoanggia[8]);}else{ echo '0';}?></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div> 
+                <!-- ./filter categgory -->
+                
+                <div class="layered_subtitle"> Hãng sản xuất</div>
+                <div class="layered-content filter-brand">
+                    <ul class="check-box-list">
+                        <?php
+                        
+                        foreach ($brand as $key_br=>$value_br){
+                            $id_brand=$value_br['id'];
+                           
+                            ?>
+                        <li>
+                            <input type="checkbox" value="<?php echo $value_br['id']?>" id="brand<?php echo $value_br['id']?>" name="brand" />
+                            <label for="brand<?php echo $value_br['id']?>">
+                                <span class="button"></span>
+                                <?php echo $value_br['manu_name']?><span class="count"><?php //if(isset($count_brand[$id_brand])){echo count($count_brand[$id_brand]);}else{ echo '0';}?></span>
+                            </label>   
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <div class="layered_subtitle"> Xuất xứ</div>
+                <div class="layered-content filter-brand">
+                    <ul class="check-box-list">
+                       
+                       <?php foreach ($xuatxu as $key_x=>$value_x){
+                           $id_xuatxu= $value_x['id'];
+                           ?>
+                        <li>
+                            <input type="checkbox" value="<?php echo $value_x['id']?>" id="xatxu<?php echo $value_x['id']?>" name="xuatxu" />
+                            <label for="xatxu<?php echo $value_x['id']?>">
+                                <span class="button"></span>
+                                <?php echo $value_x['name']?><span class="count"><?php //if(isset($count_xuatxu[$id_xuatxu])){echo count($count_xuatxu[$id_xuatxu]);}else{ echo '0';}?></span>
+                            </label>   
+                        </li>
+                       <?php }?>
+                    </ul>
+                </div>
+                <div class="layered_subtitle"> Chất liệu</div>
+                <div class="layered-content filter-brand">
+                    <ul class="check-box-list">
+                        <?php foreach ($chatlieu as $key_cl=>$value_cl){
+                            $id_chatlieu=$value_cl['id'];
+                            ?>
+                        <li>
+                            <input type="checkbox" value="<?php echo $value_cl['id']?>" id="chatlieu<?php echo $value_cl['id']?>" name="chatlieu" />
+                            <label for="chatlieu<?php echo $value_cl['id']?>">
+                                <span class="button"></span>
+                                <?php echo $value_cl['name']?><span class="count"><?php //if(isset($count_chatlieu[$id_chatlieu])){echo count($count_chatlieu[$id_chatlieu]);}else{ echo '0';}?></span>
+                            </label>   
+                        </li>
+                       <?php }?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php }else{ ?>
+      <div class="block left-module">
+            <p class="title_block">Sản phẩm mới</p>
+            <div class="block_content">
+                <ul class="products-block best-sell">
+                    <?php
+                    foreach ($product_left as $key_f => $value_f) {
+                      
+                            ?>
+                            <li>
+                                <div class="products-block-left">
+                                    <a href="<?php echo WEB_PATH . '/san-pham/' . $value_f['alias'] . '.html' ?>">
+                                        <img src="<?php echo WEB_IMG . 'images/'.$value_f['thumbnail'] ?>" alt="<?php echo $value_f['product_name'] ?>">
+                                    </a>
+                                </div>
+                                <div class="products-block-right">
+                                    <p class="product-name">
+                                        <a href="<?php echo WEB_PATH . '/san-pham/' . $value_f['alias'] . '.html' ?>"><?php echo $value_f['product_name'] ?></a>
+                                    </p>
+                                    <?php
+                                    if ($value_f['sales'] == 1) {
+                                       // $price_sales_f = $value_f['price'] - ($value_f['price'] * $value_f['price_sales'] / 100);
+                                       $price_sales_f =  $value_f['price_sales'] ;
+                                        ?>
+                                        <p class="product-price"><?php echo number_format($price_sales_f, 0, ',', '.') . 'đ / ' . $value_f['product_dv']; ?></p>
+                                        <p class="old-price-detail"><?php echo number_format($value_f['price'], 0, ',', '.') . 'đ / ' . $value_f['product_dv']; ?></p>
+
+                                    <?php } else { ?>
+                                        <p class="product-price"><?php echo number_format($value_f['price'], 0, ',', '.') . 'đ / ' . $value_f['product_dv']; ?></p>
+                                    <?php } ?>
+                                <!--<p class="product-price">$38,95</p>-->
+
+                                </div>
+                            </li>
+                            <?php
+                       
+                    }
+                    ?>
+
+
+                </ul>
+            </div>
+        </div>
+   <?php }?>
+    <!-- Banner silebar -->
+    <?php
+    if ($show_banner == 1) {
+        ?>
+        <?php
+        $i = 0;
+        foreach ($data_banner as $key_b => $value_b) {
+            if (++$i > 3)
+                break;
+            ?>
+            <div class="block left-module banner-site">
+                <div class="banner-opacity">
+                    <a href="<?php echo $value_b['url'] ?>"><img src="<?php echo WEB_IMG . $value_b['img'] ?>" alt="<?php echo $value_b['title'] ?>"></a>
+                </div>
+            </div>
+            <?php
+        }
+    }
+    ?>
+    <!-- ./Banner silebar -->
+</div>

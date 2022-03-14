@@ -1,0 +1,245 @@
+<?php
+
+use Zend\Session\Container;
+
+$container = new Container('shopcart');
+$arraycart = $container->cart;
+
+$session_customer_guest = new Container('customer_guest');
+$username_guest = $session_customer_guest->name_customer;
+
+$session_user = new Container('userlogin');
+$username = $session_user->username;
+?>
+<div id="header" class="header">
+    <div class="top-header">
+        <div class="container">
+            <?php if ($username_guest != null) { ?>
+             <div id="user-info-top" class="user-info pull-right">
+                        <div class="dropdown">
+                            <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span><span class="none-mb">Xin chào,</span> <?php echo $username_guest ?></span></a>
+                            <ul class="dropdown-menu mega_dropdown" role="menu">                               
+                                <li><a href="<?php echo WEB_PATH ?>/tai-khoan/logout.html">Thoát</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <?php
+            } else {
+                if ($username == null) {
+                    ?>
+                    <div class="support-link">
+                        <a href="<?php echo WEB_PATH ?>/tai-khoan/dang-nhap.html"> Đăng nhập</a>
+                        <a href="<?php echo WEB_PATH ?>/tai-khoan/dang-ky.html">  Đăng ký</a>
+                    </div>
+                <?php } else { ?>
+                    <div id="user-info-top" class="user-info pull-right">
+                        <div class="dropdown">
+                            <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span><span class="none-mb">Xin chào,</span> <?php echo $username ?></span></a>
+                            <ul class="dropdown-menu mega_dropdown" role="menu">
+                                <li><a href="<?php echo WEB_PATH ?>/tai-khoan/thong-tin-tai-khoan.html">Thông tin tài khoản</a></li>
+                                <li><a href="<?php echo WEB_PATH ?>/tai-khoan/quan-ly-don-hang.html"> Lịch sử mua hàng</a></li>
+                                <li><a href="<?php echo WEB_PATH ?>/tai-khoan/logout.html">Thoát</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="nav-top-links  pull-right">
+                <a class="first-item" href="#"><img alt="phone" src="<?php echo WEB_STATIC ?>/theme/assets/images/phone.png"><span class="none-mb">Hotline :</span> <span class="hotline" ><?php echo $setting->hotline ?></span> (24/24)</a>
+
+            </div>
+        </div>
+    </div>
+    <!--/.top-header -->
+    <!-- MAIN HEADER -->
+    <div class="container main-header">
+       
+        <div class="col-sm-8 pull-right no-padding service-hide-md">
+            <div class="service ">
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/data/s1.png" />
+            </div>
+            <div class="info">
+                <a href="#"><H4>Giao hàng toàn quốc</H4></a>                
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/images/icon-xd.png" />
+            </div>
+            <div class="info">
+                <a href="#"><H4>1 đổi 1 trong vòng 7 ngày</H4></a>
+               
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/data/s3.png" />
+            </div>
+
+            <div class="info" >
+                <a href="#"><H4>Hỗ trợ 24/7</H4></a>               
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/images/icon-cash.png" />
+            </div>
+            <div class="info">
+                <a href="#"><H4>Thanh toán khi nhận hàng</H4></a>
+               
+            </div>
+        </div>
+    </div>
+        </div>
+      
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 logo">
+                <a href="<?php echo WEB_PATH ?>"><img alt="" src="<?php echo WEB_IMG . $setting->logo ?>" /></a>
+            </div>
+            
+            <div class="col-xs-7 col-sm-7 header-search-box">
+                <form action="<?php echo WEB_PATH ?>/tim-kiem.html" method="get" class="form-inline">
+
+                    <div class="form-group input-serach">
+                         <input id="search-data1" type="text" name="key" onkeyup="searchproduct()"  placeholder="Từ khóa tìm kiếm..." autocomplete="off">
+                    </div>
+                    <button type="submit" class="pull-right btn-search"></button>
+                </form>
+				  <ul id="list-search"></ul>
+            </div>
+            <div id="cart-block" class="col-xs-5 col-sm-2 shopping-cart-box">
+                <a class="cart-link" href="javascript:void(0);" onclick="viewcart();">
+                    <span class="title">Giỏ hàng</span>
+                    <span class="total"><span id="total-cart"><?php echo count($arraycart) ?></span> sản phẩm</span>
+                    <span class="notify notify-left"><?php echo count($arraycart) ?></span>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" id="box-vertical-megamenus">
+                    <div class="box-vertical-megamenus">
+                        <h4 class="title">
+                            <span class="title-menu">Danh mục <span class="cat-mb">sản phẩm</span></span>
+                            <span class="btn-open-mobile pull-right home-page"><i class="fa fa-bars"></i></span>
+                        </h4>
+                        <div class="vertical-menu-content is-home">
+                            <ul class="vertical-menu-list">
+                                <?php
+                                foreach ($data_cat as $key => $value) {
+                                    $id_cat = $value['id'];
+                                    $data_parent_cat = $data_parent[$id_cat];  //level 2   
+                                    if ($value['parent'] == 0) {
+                                        ?>
+                                        <li><a <?php
+                                            if ($data_parent_cat != null) {
+                                                echo 'class="parent"';
+                                            }
+                                            ?> href="<?php echo WEB_PATH . '/san-pham/danh-muc/' . $value['alias'] . '.html' ?>"><img class="icon-menu" alt="<?php echo $value['name'] ?>" src="<?php echo WEB_IMG . $value['icon'] ?>"><?php echo $value['name'] ?></a>
+                                                <?php
+                                                //Sub menu Level 2
+                                                if ($data_parent_cat != null) {
+                                                    ?>
+
+                                                <div class="vertical-dropdown-menu col-sm-12">
+                                                    <div class="vertical-groups col-sm-12">
+                                                        <div class="mega-group col-sm-12">
+                                                            <?php
+                                                            foreach ($data_parent_cat as $key_sb => $value_sb) {
+                                                                $id_sb = $value_sb['id'];
+                                                                $data_parent_cat_sb = $data_parent[$id_sb]; //level 3
+                                                                ?>
+                                                                <h5 >
+                                                                    <a <?php
+                                                                    if (count($data_parent_cat_sb) > 0) {
+                                                                        echo 'class="mega-group-header"';
+                                                                    } else {
+                                                                        echo 'class="nav_sub"';
+                                                                    }
+                                                                    ?> href="<?php echo WEB_PATH . '/san-pham/danh-muc/' . $value_sb['alias'] . '.html' ?>">
+                                                                <?php echo $value_sb['name'] ?></a>
+                                                                </h5>
+                                                                <?php
+                                                                if (count($data_parent_cat_sb) > 0) {
+                                                                    ?>
+                                                                    <ul class="group-link-default">
+                                                                        <?php foreach ($data_parent_cat_sb as $key_sb1 => $value_sb1) { ?>
+                                                                            <li><a href="<?php echo WEB_PATH . '/san-pham/danh-muc/' . $value_sb1['alias'] . '.html' ?>"><i class="fa fa-angle-double-right"></i> <?php echo $value_sb1['name'] ?></a></li>
+                                                                    <?php } ?>
+                                                                    </ul>
+                                                                    <?php
+                                                                }//end menu level 3
+                                                            }//end menu level 2
+                                                            ?>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                        <?php } //end if ?>
+                                        </li>
+                                        <?php
+                                    }//end if menu main
+                                }   //End Menu Main                                     
+                                ?>
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="main-menu" class="col-sm-9 main-menu">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">MENU</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav style-nav">
+                                    <li class="home" ><a href="<?php echo WEB_PATH ?>">trang chủ </a></li>
+                                    <li ><a href="<?php echo WEB_PATH . '/gioi-thieu.html' ?>">giới thiệu </a></li>
+
+                                    <li><a href="<?php echo WEB_PATH . '/san-pham.html' ?>">sản phẩm</a></li>
+                                    <li><a href="<?php echo WEB_PATH . '/tin-tuc.html' ?>">tin tức</a></li>
+                                    <li><a href="<?php echo WEB_PATH . '/huong-dan.html' ?>">hướng dẫn</a></li>
+
+                                    <li><a href="<?php echo WEB_PATH . '/ban-do.html' ?>">bản đồ </a></li>
+                                    <li><a href="<?php echo WEB_PATH . '/lien-he.html' ?>">liên hệ</a></li>
+
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+            <div id="form-search-opntop">
+            </div>
+            <!-- userinfo on top-->
+            <div id="user-info-opntop">
+            </div>
+            <!-- CART ICON ON MMENU -->
+            <div id="shopping-cart-box-ontop">
+                <a  href="<?php echo WEB_PATH . '/shoppingcart/view-cart.html' ?>">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+                <div class="shopping-cart-box-ontop-content"></div>
+            </div>
+        </div>
+    </div>
+</div>

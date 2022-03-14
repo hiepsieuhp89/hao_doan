@@ -1,0 +1,122 @@
+<div class="box-slider-left">
+    <div class="box-product">
+        <h2 class="page-heading">
+            <span>Thông tin tài khoản</span>
+        </h2>
+        <div class="box-contact top-20">
+            <?php
+                   if(isset($error)){ echo '<div class="alert alert-success" role="alert">'.$error.'</div>';}
+                   if(isset($error1)){ echo '<div class="alert alert-danger" role="alert">'.$error1.'</div>';}
+                   ?> 
+            <form class="form-horizontal" role="form" method="post">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Họ và tên
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="name" value="<?php echo $data_acount['fullname']?>" id="name" placeholder="Họ và tên">
+                    </div>
+                </div>               
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Công ty
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" value="<?php echo $data_acount['company']?>" name="company" id="name" placeholder="Tên công ty">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Điện thoại
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="phone" value="<?php echo $data_acount['phone']?>" id="phone" placeholder="043 888 888">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Địa chỉ
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="address" value="<?php echo $data_acount['address']?>" id="address" placeholder="Địa chỉ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Email
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control bg-email" name="email" id="email" value="<?php echo $data_acount['email']?>" placeholder="admin@gmail.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Yahoo
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="yahoo" id="yahoo" value="<?php echo $data_acount['yahoo']?>" placeholder="Yahoo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Skype
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="skype" value="<?php echo $data_acount['skype']?>" id="skype" placeholder="Skype">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Facebook
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="facebook" value="<?php echo $data_acount['facebook']?>" id="facebook" id="name" placeholder="Facebook">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="button btn-send">Cập nhật
+                        </button>
+                        
+                    </div>
+                </div>
+            </form>
+            <div class="clear"></div>
+            <div class="border-bottom">
+            </div>
+        </div>
+        <div class="box-contact">
+            <h4><strong>THAY ĐỔI MẬT KHẨU</strong></h4>
+              <?php
+                   if(isset($error2)){ echo '<div class="alert alert-success" role="alert">'.$error2.'</div>';}
+                 
+                   ?> 
+            <form class="form-horizontal" role="form" method="post" id="register-form">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Mật khẩu
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Nhập lại mật khẩu
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" name="passconfirm" id="passconfirm" placeholder="Nhập lại mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="button btn-send">Đổi mật khẩu
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<?php
+use Zend\Session\Container;
+$odersucess = new Container('oder');
+$getoder = $odersucess->getoder;
+
+?>
+<h2 class="page-heading">
+    <span class="page-heading-title2"> Đặt hàng thành công</span>
+</h2>
+
+<div id="checkout-0">   
+
+    <center><p class="sucess_by top-20">Yêu cầu đặt hàng của bạn đã được gửi đi thành công.Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian nhanh nhất.</br> Cảm ơn bạn đã quan tâm và mua hàng của chúng tôi !</p>
+<a href="<?php echo WEB_PATH?>">
+<button type="button" class="button btn-primary" style="background:#F73667" ><i class="fa fa-arrow-circle-left"></i> Tiếp Tục Mua Hàng</button>
+</a>
+</center>
+ <h2 class="page-heading">
+    <span class="page-heading-title2">Thông tin đơn hàng</span>
+</h2>
+    <div class="oder_sucess"><?php echo $getoder?></div>
+</div>
+<style>
+    #display_oder{
+        display: none;
+    }
+    </style>

@@ -1,0 +1,58 @@
+<div class="box-slider-left">
+    <div class="box-product">
+        <h3 class="title-product-2">
+            <span><?php echo $data_manu['manu_name'] ?></span>
+        </h3>
+    </div>
+    <div class="box-product">
+        <?php
+        if ($paginator != null) {
+            foreach ($paginator as $key => $value) {
+                $id_product = $value->id;
+                $images = $img_product[$id_product];
+                ?>
+                <div class="box-item-product">
+                    <div class="item-product">
+                        <a href="<?php echo WEB_PATH . '/san-pham/' . $value->alias . '.html' ?>" onmouseover="Tip('<img src=\'<?php echo WEB_IMG . $images['thumbnail'] ?>\' width=\'450\'>')" onmouseout="UnTip()">
+                            <img src="<?php echo WEB_IMG . $images['thumbnail'] ?>" alt="" />
+                        </a>
+                        <div class="caption">
+                            <h3><a href="<?php echo WEB_PATH . '/san-pham/' . $value->alias . '.html' ?>"><?php echo $value->product_name ?></a></h3>
+                            
+                         <p>
+<?php if($value->price ==''){ echo '<a style="color:#f00;" href="'.WEB_PATH.'/lien-he.html">Liên Hệ</a>';}else{ echo number_format($value->price,0,',', '.').'₫';}?>
+ </p>
+                            <form action="<?php echo WEB_PATH ?>/shoppingcart/add-cart.html" method="post">
+                                <input type="hidden" name="qty" value="1"/>
+                                <input type="hidden" name="id_product" value="<?php echo $value->id ?>" />
+                                <button class="btn-cart">
+                                    <i class="fa fa-cart-plus"></i>
+                                    Mua hàng
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+            }
+        } else {
+            echo '<center>Sản phẩm đang được cập nhật</center>';
+        }
+        ?>
+
+
+
+        <div class="clear"></div>
+    </div>
+    <div class="box-product">
+        <nav class="text-center">
+            <?php
+            echo $this->paginationControl(
+                    $paginator, 'Sliding', '/fronts/product/page/PageManu.phtml'
+            );
+            ?>
+        </nav>
+    </div>
+
+</div>

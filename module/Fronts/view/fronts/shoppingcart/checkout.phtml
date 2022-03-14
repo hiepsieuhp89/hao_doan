@@ -1,0 +1,81 @@
+<?php
+
+use Zend\Session\Container;
+
+$container = new Container('shopcart');
+$arraycart = $container->cart;
+
+$session_customer_guest = new Container('customer_guest');
+$username_guest = $session_customer_guest->name_customer;
+$email_guest = $session_customer_guest->mail_customer;
+$phone_guest = $session_customer_guest->phone_customer;
+$address_guest = $session_customer_guest->address_customer;
+
+$session_user = new Container('userlogin');
+$username = $session_user->username;
+$emai_user = $session_user->email;
+$address_user = $session_user->address;
+$phone_user = $session_user->phone;
+?>
+
+<!-- page heading-->
+<h2 class="page-heading">
+    <span class="page-heading-title2">Thanh toán</span>
+</h2>
+<!-- ../page heading-->
+<div class="page-content checkout-page ">
+    <div class="load"></div>
+    <div id="content-checkout">
+    <div class="heading-counter warning">
+        Bạn vui lòng điền đầy đủ thông tin dưới đây để nhận được sản phẩm trong thời gian nhanh nhất. Chúng tôi sẽ liên hệ ngay sau khi nhận được yêu cầu:
+    </div>
+    <div class="box-border">
+        <form action="javascript:void(0)" method="post" id="form-by">
+             <input type="hidden" id="domain" value="<?php echo WEB_PATH.'/shoppingcart/postcheckout'?>"/>
+        <ul>
+            <li class="row">
+                <div class="col-sm-6">
+                    <label for="first_name" class="required">Họ tên: <span>*</span></label>
+                  <input type="text" class="form-control input" name="name" id="name" value="<?php echo $username . $username_guest ?>" <?php //if($username !=null || $username_guest !=null){ echo 'readonly';}?>/>
+                    <span id="name1-error1" class="error"></span>
+                </div><!--/ [col] -->
+                <div class="col-sm-6">
+                    <label for="last_name" class="required"> Điện thoại: <span>*</span></label>
+                     <input type="text" class="form-control input" name="phone" id="phone" value="<?php echo $phone_guest.$phone_user ?>" <?php //if($phone_guest !=null || $phone_user !=null){ echo 'readonly';}?>/>
+                     <span id="phone-error1" class="error"></span>
+                </div><!--/ [col] -->
+            </li><!--/ .row -->
+            <li class="row">
+                <div class="col-sm-6">
+                    <label for="company_name"> Địa chỉ: <span>*</span></label>
+                    <input type="text" class="form-control input" name="address" id="address" value="<?php echo $address_guest.$address_user ?>" <?php //if($address_guest !=null || $address_user !=null){ echo 'readonly';}?>/>
+                     <span id="address-error1" class="error"></span>
+                </div><!--/ [col] -->
+                <div class="col-sm-6">
+                    <label for="email_address" class="required">Email: </label>
+                    <input type="email" class="form-control input" name="email" id="email" value="<?php echo $email_guest.$emai_user ?>" <?php //if($emai_user !=null || $email_guest !=null){ echo 'readonly';}?>/>
+                    <span id="email-error1" class="error"></span>
+                </div><!--/ [col] -->
+            </li><!--/ .row -->
+            <li class="row">
+                <div class="col-sm-12">
+                    <label for="company_content"> Ghi chú: </label>
+                    <textarea class="form-control input" id="contents" name="content" style="width:100%; border: 1px solid #ccc;" rows="5"></textarea>
+                </div><!--/ [col] -->               
+            </li><!--/ .row -->
+           
+            <li>
+                <div class="col-sm-12 box-dk">
+                    <input type="checkbox" checked name="dk" id="dieukhoan" /><a href="<?php echo WEB_PATH.'/dieu-khoan-giao-dich.html'?>">Tôi đồng ý với các điều khoản giao dich của giadung88.com </a><br/>
+                 <span id="dieukhoan-error1" class="error"></span> 
+                </div>
+                <button onclick="checkout(1);" class="button btn-checkout"> Đặt Hàng</button>
+                <button type="reset" class="button btn-reset">Nhập lại</button>
+                 
+            </li>
+        </ul>
+        </form>
+    </div>
+    </div>
+   
+</div>

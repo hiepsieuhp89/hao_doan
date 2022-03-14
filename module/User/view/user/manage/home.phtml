@@ -1,0 +1,270 @@
+<?php
+
+use Zend\Session\Container;
+
+$session_user = new Container('user');
+$permistion = $session_user->permission;
+?>
+<div class="row" id="content-wrapper">
+    <div class="col-xs-12">
+        <?php
+        if ($permistion != 1) {
+            ?> 
+            <center>
+                <?php
+                $website = str_replace("http://", "", WEB_PATH);
+                ?>
+
+                <h1 style="font-family: sans-serif; font-size: 40px; font-weight: bold; margin-top: 50px;">HỆ THỐNG QUẢN TRỊ WEBSITE</h1>
+                <h3 ><a style="font-size:30px; color: #00ACEC;"href="<?php echo WEB_PATH ?>" target="_blank"><?php echo $website ?></a></h3>
+                <img src="<?php echo WEB_IMG . '/images/web.png' ?> " />
+            </center>
+        <?php } else { ?>
+            <div class="page-header page-header-with-buttons">
+                <h1 class="pull-left">
+                    <i class="icon-dashboard"></i>
+                    <span>Dashboard</span>
+                </h1>
+                <!--<div class="pull-right">
+                  <div class="btn-group">
+                    <a class="btn btn-white hidden-xs" href="#">Last month</a>
+                    <a class="btn btn-white" href="#">Last week</a>
+                    <a class="btn btn-white " href="#">Today</a>
+                          <a class="btn btn-white" id="daterange" href="#"><i class="icon-calendar"></i>
+                    <span>Custom</span>
+                    <b class="caret"></b>
+                    </a>
+              
+                  </div>
+                </div>-->
+            </div>
+            <!-- <div class="alert alert-info alert-dismissable">
+               <a class="close" data-dismiss="alert" href="#">×</a>
+               Welcome to
+               <strong>Flatty (v2.2)</strong>
+               - I hope you'll like it. Don't forget - you can change theme color in top right corner
+               <i class="icon-cog"></i>
+               if you want.
+             </div>-->
+            <div class="row box box-transparent">
+                <div class="col-xs-4 col-sm-2">
+                    <div class="box-quick-link blue-background">
+                        <a href="<?php echo WEB_PATH ?>/system/news">
+                            <div class="header">
+                                <div class="icon-comments"></div>
+                            </div>
+                            <div class="content">Tin tức</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <div class="box-quick-link green-background">
+                        <a href="<?php echo WEB_PATH ?>/system/slideshow">
+                            <div class="header">
+                                <div class="icon-star"></div>
+                            </div>
+                            <div class="content">Ảnh SlideShow</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <div class="box-quick-link orange-background">
+                        <a href="<?php echo WEB_PATH ?>/system/banner">
+                            <div class="header">
+                                <div class="icon-magic"></div>
+                            </div>
+                            <div class="content"> Ảnh Banner</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <div class="box-quick-link purple-background">
+                        <a href="<?php echo WEB_PATH ?>/system/product">
+                            <div class="header">
+                                <div class="icon-eye-open"></div>
+                            </div>
+                            <div class="content"> Sản Phẩm</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <div class="box-quick-link red-background">
+                        <a href="<?php echo WEB_PATH ?>/system/order">
+                            <div class="header">
+                                <div class="icon-inbox"></div>
+                            </div>
+                            <div class="content">Đơn Hàng</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <div class="box-quick-link muted-background">
+                        <a href="<?php echo WEB_PATH ?>/system/contact">
+                            <div class="header">
+                                <div class="icon-refresh"></div>
+                            </div>
+                            <div class="content"> Liên Hệ</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 box">
+                    <div class="box-header">
+                        <div class="title">
+                            <i class="icon-inbox"></i>
+                            Đơn Hàng Mới
+                        </div>
+                        <div class="actions">
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class="icon-remove"></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <table class='table table-bordered table-striped' style='margin-bottom:0;'>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        STT
+                                    </th>
+                                    <th>
+                                        Mã hóa đơn
+                                    </th>
+                                    <th>
+                                        Khách hàng
+                                    </th>
+                                    <th>
+                                        Trạng thái
+                                    </th>
+									<th>
+                                        Ngày đặt
+                                    </th>
+                                    <th>
+                                        Tổng tiền
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <?php
+                                $i = 0;
+                                $j = '';
+                                foreach ($data_order as $key => $value) {
+                                    if (++$j > 10)
+                                        break;
+                                    ?>
+
+                                    <tr>
+                                        <td><?php echo $i +=1; ?></td>
+                                        <td>
+                                            <?php echo '<a href="' . WEB_PATH . '/system/order/view/' . $value['id'] . '">' . $value['code_oder'] . '</a>'; ?>
+                                        </td>
+                                            
+
+                                        <td><?php echo '<a href="' . WEB_PATH . '/system/order/view/' . $value['id'] . '">' . $value['name'] . '</a>'; ?></td>
+                                       <td>
+                                                  <div class='col-sm-11 controls select-pro'>
+                                            <select class='form-control' data-rule-required="true" id="status-oder" onchange="changestatus_oder(<?php echo $value['id']?>)" name='manufa_id'>
+                                                <option <?php if($value['status_order']=='0'){ echo 'selected' ;}?> value="0">Đang chờ xử lý</option>
+                                                <option <?php if($value['status_order']=='1'){ echo 'selected' ;}?> value="1"> Đang sử lý</option>
+                                                <option <?php if($value['status_order']=='2'){ echo 'selected' ;}?> value="2">  Đã hoàn thành</option>
+                                                 <option <?php if($value['status_order']=='3'){ echo 'selected' ;}?> value="3">  Hủy đơn hàng</option>
+                                            </select>
+                                        </div>
+                                                </td>
+												<td><?php echo date('d-m-Y', strtotime($value['date'])); ?></td>
+                                        <td>
+                                            <?php echo number_format($value['total_money'], 0, ',', '.') . 'đ'; ?>
+                                        </td>
+
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <!--<div class="col-sm-6 box">
+                    <div class="box-header">
+                        <div class="title">
+                            <i class="icon-cog"></i>
+                            Sản phẩm mới
+                        </div>
+                        <div class="actions">
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class="icon-remove"></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <table class='table table-bordered table-striped' style='margin-bottom:0;'>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        STT
+                                    </th>
+                                    <th>
+                                        Mã sản phẩm
+                                    </th>
+                                    <th>
+                                        Tên sản phẩm
+                                    </th>
+                                    <th>
+                                        Giá
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <?php
+                                $x = 0;
+                                $y = '';
+                                foreach ($data_product as $key1 => $value1) {
+                                    if (++$y > 10)
+                                        break;
+                                    ?>
+
+                                    <tr>
+                                        <td><?php echo $x +=1; ?></td>
+                                        <td><?php echo '<a href="' . WEB_PATH . '/system/product/view/' . $value1['id'] . '">' . $value1['code_id'] . '</a>'; ?></td>
+
+
+                                        <td><?php echo '<a href="' . WEB_PATH . '/system/product/view/' . $value1['id'] . '">' . $value1['product_name'] . '</a>'; ?></td>
+                                        <td>
+                                            <?php echo number_format($value1['price'], 0, ',', '.') . 'đ / ' . $value1['product_dv']; ?> 
+                                        </td>
+
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>-->
+            </div>
+
+
+
+
+
+
+
+        <?php } ?>
+    </div>
+</div>
+<style>
+    #status-oder{
+    font-size: 12px;
+    padding: 0px;
+    width: 115px;
+    }
+</style>    

@@ -1,0 +1,66 @@
+<!-- view-product-list-->
+<div id="view-product-list" class="view-product-list">
+    <input type="hidden" id="alias-cat" value="false"/>
+    <h2 class="page-heading">
+        <span class="page-heading-title">Sản phẩm</span>
+    </h2>
+
+    <!-- PRODUCT LIST -->
+    <ul id="list_product" class="row product-list grid">
+        <?php foreach ($paginator as $key => $value) { ?>
+            <li class="col-xs-6 col-sm-3" >
+                <div class="product-container">
+                    <div class="left-block">
+                        <a href="<?php echo WEB_PATH . '/san-pham/' . $value->alias . '.html' ?>">
+                            <img class="img-responsive" alt="<?php echo $value->product_name ?>" src="<?php echo WEB_IMG .'images/'. $value->thumbnail ?>" />
+                        </a>
+                        <?php if ($value->sales == 1) { $price_sales = ($value->price - $value->price_sales)*100 / $value->price ;?>
+                            <div class="price-percent-reduction2"><?php echo '-' . round($price_sales) . '% OFF' ?></div>
+                        <?php } ?>
+                        <!--<div class="add-to-cart">
+                            <a title="Đặt Hàng" onclick="addcart(<?php echo $value->id; ?>,0);" href="javascript:void(0);">Đặt Hàng</a>
+                        </div>-->
+                    </div>
+                    <div class="right-block">
+                        <h3 class="product-name"><a href="<?php echo WEB_PATH . '/san-pham/' . $value->alias . '.html' ?>"><?php echo $value->product_name ?></a></h3>
+
+                        <div class="content_price">
+                            <?php
+                            if ($value->sales == 1) {
+                                //$price_sales = $value->price - ($value->price * $value->price_sales / 100);
+                                ?>
+                                <span class="price product-price"><?php echo number_format($value->price_sales, 0, ',', '.') . 'đ / ' . $value->product_dv; ?></span><br/>
+                                <span class="price old-price"><?php echo number_format($value->price, 0, ',', '.') . 'đ / ' . $value->product_dv; ?></span>
+                            <?php } else { ?>
+                                <span class="price product-price"><?php echo number_format($value->price, 0, ',', '.') . 'đ / ' . $value->product_dv; ?></span>
+                            <?php } ?>
+                        </div>
+
+                    </div>
+                </div>
+            </li>        
+        <?php } ?>
+    </ul>
+    <!-- ./PRODUCT LIST -->
+</div>
+<!-- ./view-product-list-->
+<div class="sortPagiBar">
+    <div class="bottom-pagination">
+        <?php
+        echo $this->paginationControl(
+                $paginator, 'Sliding', '/fronts/product/page/Page.phtml'
+        );
+        ?>
+
+    </div>
+
+    <!--<div class="sort-product">
+        <select>
+            <option value="">Product Name</option>
+            <option value="">Price</option>
+        </select>
+        <div class="sort-product-icon">
+            <i class="fa fa-sort-alpha-asc"></i>
+        </div>
+    </div>-->
+</div>

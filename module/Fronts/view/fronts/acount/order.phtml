@@ -1,0 +1,114 @@
+<div class="box-slider-left">
+    <div class="box-product">
+        <h2 class="page-heading">
+            <span>Quản lý đơn hàng</span>
+        </h2>
+        <?php
+        if ($paginator == null) {
+            echo '<p>Chưa có hóa đơn nào trong danh sách</p>';
+        }
+        foreach ($paginator as $key => $value) {
+            ?>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="title-info">
+                        <div class="div-id" >
+                            Mã Đơn hàng:  <span style="font-weight:700; color:#cc0000;"><?php echo $value->code_oder ?></span>
+                        </div>                        
+                    </div>
+                    <div class="box-checkout-left22">
+                        <p><strong>Ngày đặt:</strong> <?php echo date('d-m-Y', strtotime($value->date)); ?></p>
+                        <p><strong>Trạng thái đơn hàng:</strong><span style="font-weight:700; color:#cc0000;">
+                                <?php
+                                if ($value->status_order == 0) {
+                                    echo 'Đang chờ xử lí';
+                                } elseif ($value->status_order == 1) {
+                                    echo 'Đang xử lí';
+                                } else {
+                                    echo 'Đã hoàn thành';
+                                }
+                                ?>
+                            </span></p>
+                        <p><strong>Trị giá đơn hàng: <?php echo number_format($value->total_money, 0) ?> ₫</strong></p>
+                        <p><strong>Phương thức thanh toán:</strong>
+                            <?php
+                            if ($value->type == 1) {
+                                echo 'Thanh toán tại cửa hàng';
+                            } else {
+                                echo 'Thanh toán khi nhận được hàng';
+                            }
+                            ?></p>
+                        <!--<p><strong>Đơn hàng bao gồm :</strong> Sopha đơn đẹp</p>-->
+                    </div>    
+                </div>
+                <div class="col-sm-6">                
+                    <div class="box-product">               
+                        <div class="box-checkout-right">
+                            <h4><strong>Thông tin người nhận</strong></h4>
+                            <p><strong><?php echo $value->name ?></strong></p>
+                            <p>Địa chỉ: <?php echo $value->address ?></p>
+                            <p>Điện thoại: <?php echo $value->phone ?></p>
+                            <p>Email: <?php echo $value->email ?></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-product top-20">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="color:#f4a137;">Mã SP</th>
+                            <th style="color:#f4a137;">Sản phẩm</th>
+                            <th style="color:#f4a137;">Số lượng</th>
+                            <th style="color:#f4a137;">Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $total_m = '';
+                        foreach ($oder_detail[$value->id] as $key1 => $value1) {
+
+                            $id_product = $value1['id_product'];
+                            foreach ($listproduct[$id_product] as $key2 => $value2) {
+                                if ($value2['sales'] == 1) {
+                                    $price_sales1 = $value2['price'] - ($value2['price'] * $value2['price_sales'] / 100);
+                                } else {
+                                    $price_sales1 = $value2['price'];
+                                }
+                                ?>
+                                <tr>
+                                    <th scope="row"><?php echo $value2['code_id'] ?></th>
+                                    <td><strong><?php echo $value2['product_name'] ?></strong></td>
+                                    <td><strong><?php echo $value1['quantity'] ?></strong></td>
+                                    <td><?php echo number_format($price_sales1, 0) ?> đ</td>
+                                </tr>
+                                <?php
+                            }
+                            $total_m += $price_sales1 * $value1['quantity'];
+                        }
+                        ?>
+                        <tr>
+                            <td colspan="3" style="text-align:right;">Tổng tiền</td>
+                            <th style="font-size:14px;"><?php echo number_format($total_m, 0) ?>  ₫</th>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <hr/>
+        <?php } ?>
+    </div>
+</div>
+<div class="sortPagiBar">
+    <div class="bottom-pagination">
+        <?php
+        echo $this->paginationControl(
+                $paginator, 'Sliding', '/fronts/acount/page/Page.phtml'
+        );
+        ?>
+
+    </div>
+
+</div>

@@ -1,0 +1,70 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span>Google Analytics</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>
+                                                   
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <?php
+                    if(isset($alert)){
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>-->
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>
+                        <!-- <button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                       <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+                        
+                        <form method="post" id="form-admin" class='form form-horizontal validate-form' style='margin-bottom: 0;' enctype="multipart/form-data">
+                            <div class="content-tab tab-content1">
+                                  <div class='form-group col-sm-12'>
+                                        <label class="col-sm-2 control-label">Code Google Analytics</label>
+                                        <div class="box-content col-sm-10">
+                                             <?php
+                                        $filename = WEB_MEDIA . '/public/file/google.txt';
+                                        $content = file_get_contents($filename, true);
+                                        ?>
+                                            <textarea class="form-control"  id="validation_name7" placeholder="" name="google" rows="10"><?php echo $content;?></textarea>
+                                        </div>
+                                    </div>
+                               
+                                   
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

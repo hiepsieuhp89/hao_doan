@@ -1,0 +1,219 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Quản lý danh mục sản phẩm</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+							<li>
+                                <a href="<?php echo WEB_PATH.'/system/product/category/sortmenu'?>">
+                                    <button class="btn btn-primary"><i class="icon-plus"></i> Xắp xếp danh mục </button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo WEB_PATH.'/system/product/category/add'?>">
+                                    <button class="btn btn-primary"><i class="icon-plus"></i> Thêm mới</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                <table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                STT
+                                            </th>
+                                            <th>
+                                                Danh mục
+                                            </th>
+                                            <th>
+                                                Danh mục cha
+                                            </th>
+                                            <th>
+                                                Ngày đăng
+                                            </th>
+                                            <th>
+                                                Nhân viên hỗ trợ
+                                            </th>
+                                            <th>
+                                                Hiển thị trang chủ
+                                            </th>
+                                            <th>
+                                                Trạng thái
+                                            </th>																
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                        
+
+                                        <?php
+                                        $stt = 0;
+                                        foreach ($data as $key => $value) {
+                                            $stt ++;
+                                            ?>
+
+                                            <tr>
+                                                <td><?php echo $stt ?></td>
+                                                <td><?php echo $value['name']; ?></?php?></td>
+                                                <td>
+                                                    <?php
+                                                    $parent = $value['parent'];
+                                                    echo $parent_name[$parent]['name'];
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <?php echo date('d-m-Y', strtotime($value['date'])); ?>
+                                                </td>
+                                                <td><?php echo $value['user']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if($value['parent']==0){
+                                                    if ($value['show_index'] == 1) {
+                                                        echo '<a href='.WEB_PATH.'/system/product/category/showindex/'.$value['id'].'/show='.$value['show_index'].'
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href='.WEB_PATH.'/system/product/category/showindex/'.$value['id'].'/show='.$value['show_index'].'
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($value['status'] == 1) {
+                                                        echo '<a href='.WEB_PATH.'/system/product/category/status/'.$value['id'].'/'.$value['status'].'
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href='.WEB_PATH.'/system/product/category/status/'.$value['id'].'/'.$value['status'].'
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <div class='text-right'>
+                                                        <a class='btn btn-primary btn-xs' href='<?php echo WEB_PATH; ?>/system/product/category/edit/<?php echo $value['id']; ?>'>
+                                                            <i class='icon-edit'></i>
+                                                        </a>
+                                                        <a onclick="deleteaction(<?php echo $value['id']; ?>)"class='btn btn-danger btn-xs'>
+                                                            <i class='icon-remove'></i>
+                                                        </a>
+                                                    </div>
+                                                    <input type="hidden" id="url" value="category/delete/" />
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th> Danh mục</th>
+                                            <th> Danh mục cha</th>
+                                            <th> Ngày đăng</th>
+                                            <th> Nhân viên hỗ trợ</th>
+                                            <th> Trang chủ</th>
+                                            <th> Trạng thái</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- //////////////////DELETE///////////////////--> 
+<div class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  blue-background">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">XÓA DANH MỤC SẢN PHẨM</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color: red; font-size: 12px; font-style: italic ">Bạn có chắc chắn muốn xóa danh mục này không?. Nếu xóa danh mục này thì tất cả các sản phẩm thuộc danh mục này cũng bị xóa. Bạn có thể lựa chọn chuyển toàn bộ sản phẩm thuộc danh mục này sang 1 danh mục khác trước khi xóa</p>;
+                <form action="<?php echo WEB_PATH.'/system/product/category/delete'?>" method="post" class='form form-horizontal validate-form' style='margin-bottom: 0;' enctype="multipart/form-data">
+                    <div class="row">
+                        <input type="hidden" id="cat_id" value="" name="cat_id"/>
+                                <div class="form-group col-sm-12">
+                                    <label class="col-md-3 control-label"> Lựa chọn</label>
+                                    <div class="col-sm-9">
+                                        <label class="radio radio-inline">
+                                            <input onclick="get_valueradio()" type="radio" value="1" name="type" >
+                                            Xóa toàn bộ
+                                        </label>
+                                        <label class="radio radio-inline">
+                                            <input onclick="get_valueradio()" type="radio" value="0" name="type">
+                                            Chuyển danh mục 
+                                        </label>
+
+                                    </div>
+                                </div>
+                         <div class='form-group col-sm-12 select-cat'>
+                                    <label class='control-label col-sm-3' for='validation_select'>Chọn danh mục</label>
+                                    <div class='col-sm-9 controls'>
+                                        <select class='form-control' data-rule-required="true" id="validation_select" name='cat_new'>
+                                            <option value=""> Chọn danh mục </option>
+                                             <?php foreach ($data as $key=>$value){?>
+                                            <option value="<?php echo $value['id'];?>"><?php echo $value['name']?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                          </div>
+                         <div class='form-group col-sm-12'>
+                                    <label class='control-label col-sm-3' for='validation_select'></label>
+                                    <div class='col-sm-9 controls'>
+                                        <button type="submit" class="btn btn-danger"><i class="icon-remove"></i> Xóa</button>
+                                        <span class="btn btn-success" data-dismiss="modal">Quay lại</span>
+                                    </div>
+                          </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <!--<span id="btn-del"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                -->
+                </div>
+        </div>
+        <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal-dialog --> 
+</div>
+
+<style>
+    .select-cat{
+        display: none;
+    }
+</style>    

@@ -1,0 +1,199 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Thông tin chi tiết đơn hàng <span style="color: #f00;"><?php echo $data['code_oder'] ?></span></span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/order'>
+                                    <button class="btn btn-danger"><i class="icon-arrow-left"></i> Quay lại</button>
+                                </a>
+                            </li>     
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span id="capnhat"></span>
+
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                <table class='table table-bordered table-striped' style='margin-bottom:0;'>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Mã hóa đơn :</td>
+                                            <td><?php echo $data['code_oder'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tên khách hàng :</td>
+                                            <td><?php echo $data['name'] ?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Email :</td>
+                                            <td><?php echo $data['email'] ?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Địa chỉ :</td>
+                                            <td><?php echo $data['address'] ?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> Điện thoại :</td>
+                                            <td><?php echo $data['phone'] ?></td>
+                                        </tr>
+
+<!-- <tr>
+     <td> Thành Phố :</td>
+      <td><?php echo $data['city'] ?></td>
+ </tr>-->
+
+                                        <tr>
+                                            <td> Hình thức thanh toán :</td>
+                                            <td><?php
+                                                if ($data['type'] == 1) {
+                                                    echo 'Thanh toán tại cửa hàng';
+                                                } else {
+                                                    echo 'Thanh toán khi nhận được hàng';
+                                                }
+                                                ?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> Trạng thái :</td>
+                                            <td>
+                                                <div class='col-sm-3 controls select-pro'>
+                                                    <select class='form-control' data-rule-required="true" id="status-oder"  name='manufa_id'>
+                                                        <option <?php
+                                                        if ($data['status_order'] == '0') {
+                                                            echo 'selected';
+                                                        }
+                                                        ?> value="0">Đang chờ xử lý</option>
+                                                        <option <?php
+                                                        if ($data['status_order'] == '1') {
+                                                            echo 'selected';
+                                                        }
+                                                        ?> value="1"> Đang sử lý</option>
+                                                        <option <?php
+                                                        if ($data['status_order'] == '2') {
+                                                            echo 'selected';
+                                                        }
+                                                        ?> value="2">  Đã hoàn thành</option>
+                                                        <option <?php
+                                                        if ($data['status_order'] == '3') {
+                                                            echo 'selected';
+                                                        }
+                                                        ?> value="3"> Hủy đơn hàng</option>
+                                                    </select>
+                                                </div>
+                                                <button class="btn btn-danger" onclick="changestatus_oder(<?php echo $data['id'] ?>)"><i class="icon-refresh"></i> Cập nhật </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  Tổng tiền :</td>
+                                            <td><?php echo number_format($data['total_money'], 0); ?> VNĐ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>  Ngày đặt :</td>
+                                            <td><?php echo date('d-m-Y', strtotime($data['date'])); ?></td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                               
+                                <table class=' table table-bordered table-striped' style='margin-bottom:0;'>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Mã sản phẩm
+                                            </th>
+                                            <th>
+                                                Tên sản phẩm
+                                            </th>
+                                            <th>
+                                                Số lượng
+                                            </th>
+                                            <th>
+                                                Đơn giá
+                                            </th>
+                                            <th>
+                                                Thành tiền
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $total_money = '';
+                                        foreach ($data_detail[$data['id']] as $key => $value) {
+                                            $id_product = $value['id_product'];
+                                            $total_money +=$value['price'] * $value['quantity'];
+                                            foreach ($data_product[$id_product] as $key1 => $value1) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo $value1['code_id'] ?>
+                                                    </td>
+                                                    <td>
+													<a href="<?php echo WEB_PATH.'/san-pham/'.$value1['alias'].'.html'?>" target="_blank">
+                                                        <?php echo $value1['product_name'] ?>
+														</a>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $value['quantity'] ?>
+                                                    </td>
+                                                    <td>                                                       
+                                                        <?php echo number_format($value['price'], 0) ?> VNĐ
+                                                    </td>
+                                                    <td>
+                                                        <?php echo number_format($value['price'] * $value['quantity'], 0) ?> VNĐ
+                                                    </td>
+                                                </tr>
+
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                    <tfoot>
+                                    <th colspan="4" style="text-align: right">
+                                        Tổng tiền thanh toán: 
+                                    </th>
+                                    <th>
+                                        <?php echo number_format($total_money, 0) ?> VNĐ 
+                                    </th>
+                                    </tfoot>
+                                </table>
+                                 <p>Ghi chú: <?php echo $data['content']?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

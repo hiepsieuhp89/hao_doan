@@ -1,0 +1,155 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Quản lý danh mục tin tức</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/news/category/add'>
+                                    <button class="btn btn-primary"><i class="icon-plus"></i> Thêm mới</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                <table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                STT
+                                            </th>
+                                            <th>
+                                                Danh mục
+                                            </th>
+                                            <th>
+                                                Danh mục cha
+                                            </th>
+                                            <th>
+                                                Ngày đăng
+                                            </th>
+                                            <th>
+                                                Ngày sửa
+                                            </th>
+                                            <th>
+                                                Trạng thái
+                                            </th>																
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                        
+
+                                        <?php
+                                        $stt = 0;
+                                        foreach ($data as $key => $value) {
+                                            $stt ++;
+                                            ?>
+
+                                            <tr>
+                                                <td><?php echo $stt ?></td>
+                                                <td><?php echo $value['name']; ?></?php?></td>
+                                                <td>
+                                                    <?php
+                                                    $parent = $value['parent'];
+                                                    echo $parent_name[$parent]['name'];
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <?php echo date('d-m-Y', strtotime($value['date'])); ?>
+                                                </td>
+                                                <td><?php echo date('d-m-Y', strtotime($value['mod'])); ?></td>
+                                                <td>
+                                                   <?php
+                                                    if ($value['status'] == 1) {
+                                                        echo '<a href='.WEB_PATH.'/system/news/category/status/'.$value['id'].'/'.$value['status'].'
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href='.WEB_PATH.'/system/news/category/status/'.$value['id'].'/'.$value['status'].'
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <div class='text-right'>
+                                                        <a class='btn btn-primary btn-xs' href='<?php echo WEB_PATH; ?>/system/news/category/edit/<?php echo $value['id']; ?>'>
+                                                            <i class='icon-edit'></i>
+                                                        </a>
+                                                        <a onclick="deleteaction(<?php echo $value['id']; ?>)"class='btn btn-danger btn-xs'>
+                                                            <i class='icon-remove'></i>
+                                                        </a>
+                                                    </div>
+                                                    <input type="hidden" id="url" value="category/delete/" />
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th> Danh mục</th>
+                                            <th> Danh mục cha</th>
+                                            <th> Ngày đăng</th>
+                                            <th> Ngày sửa</th>
+                                            <th> Trạng thái</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- //////////////////DELETE///////////////////--> 
+<div class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  blue-background">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">DELETE USER</h4>
+            </div>
+            <div class="modal-body">
+                <p>You sure you want to delete this user</p>
+
+            </div>
+            <div class="modal-footer ">
+                <span id="btn-del"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+            </div>
+        </div>
+        <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal-dialog --> 
+</div>
+

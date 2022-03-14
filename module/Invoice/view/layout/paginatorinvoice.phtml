@@ -1,0 +1,25 @@
+<?php if (count($this->pagesInRange) > 1) { ?>
+    <div class="align-lg-center">
+        <ul class="pagination">
+            <?php if ($this->current != 1) { ?>
+                <li><a href="<?php echo $this->url('Invoice',array('controller'=>'invoice','action'=>'list','page'=> $this->first));?>">First</a></li>
+            <?php } ?>
+            <?php if ($this->previous) { ?>
+                <li><a href="<?php echo $this->url('Invoice',array('controller'=>'invoice','action'=>'list','page'=> $this->previous));?>" title="Previous">Previous</a></li>
+            <?php } ?>
+
+            <?php foreach ($this->pagesInRange as $page) { ?>
+                <li <?php echo $page == $this->current ? 'class="active"' : ''; ?> id="page_<?php echo $page; ?>">
+                    <a href="<?php echo $this->url('Invoice',array('controller'=>'invoice','action'=>'list','page'=> $page));?>"><?php echo $page; ?></a>
+                </li>
+            <?php } ?>
+
+            <?php if ($this->next) { ?>
+                <li><a href="<?php echo $this->url('Invoice',array('controller'=>'invoice','action'=>'list','page'=> $this->next));?>" title="Next">Next</a></li>
+            <?php } ?>
+            <?php if ($this->current != $this->last) { ?>
+                <li><a href="<?php echo $this->url('Invoice',array('controller'=>'invoice','action'=>'list','page'=> $this->last));?>" title="Page End">End</a></li>
+                <?php } ?> 
+        </ul>
+    </div>
+<?php } ?> 

@@ -1,0 +1,149 @@
+<?php
+
+use Zend\Session\Container;
+
+$container = new Container('shopcart');
+$arraycart = $container->cart;
+
+$session_customer_guest = new Container('customer_guest');
+$username_guest = $session_customer_guest->name_customer;
+$email_guest = $session_customer_guest->mail_customer;
+$phone_guest = $session_customer_guest->phone_customer;
+$address_guest = $session_customer_guest->address_customer;
+
+$session_user = new Container('userlogin');
+$username = $session_user->username;
+$emai_user = $session_user->email;
+$address_user = $session_user->address;
+$phone_user = $session_user->phone;
+?>
+
+<!-- page heading-->
+<h2 class="page-heading">
+    <span class="page-heading-title2">Giỏ hàng</span>
+</h2>
+
+<?php
+if ($arraycart == null) {
+    echo '<div class="heading-counter warning">
+    Giỏ hàng của bạn hiện tại không có sản phẩm nào.
+    <a href="' . WEB_PATH . '">
+     <button class="button">Tiếp Tục Mua Hàng</button>
+     </a>
+    </div>';
+} else {
+    ?>
+    <div class="heading-counter warning">Giỏ hàng của bạn hiện có :
+        <span><?php echo count($arraycart); ?> sản phẩm</span>
+    </div>
+    <!-- ../page heading-->
+    <div class="page-content checkout-page">
+        <?php
+        $total_money = '';
+        foreach ($listproduct as $key => $value) {
+            $qty = $arraycart[$value['id']];
+            ?> 
+            <div class="row row-cart-mb">
+                <p class="col-sm-12 col-xs-12 name-product-cart-mb"><?php echo $value['product_name'] ?></p>
+                <div class="col-sm-3 col-xs-3">
+                    <a href="<?php echo WEB_PATH . '/san-pham/' . $value['alias'] . '.html' ?>"><img src="<?php echo WEB_IMG .'images/'. $value['thumbnail'] ?>" alt="<?php echo $value['product_name'] ?>" width="80"></a>
+                </div>
+                <div class="col-sm-9 col-xs-9">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="mb-count-cart pull-left qty-mobile">
+                            <p>Số lượng</p> 
+							 <input type="hidden" id="qty_old<?php echo $value['id']?>" value="<?php echo  $qty ?>" />
+							  <i onclick="updatecart(<?php echo $value['id'] ?>,1);" class="fa fa-minus fa-minus-cart"></i>
+                           <input type="text" id="number-update<?php echo $value['id'] ?>" value="<?php echo $qty ?>" readonly="true"/>                            
+                             <i onclick="updatecart(<?php echo $value['id'] ?>,2);" class="fa fa-plus fa-plus-cart"></i>  
+                           
+                        </div>
+                        <div class="mb-remove-cart pull-right">
+                            <a href="javascript:void(0);" onclick="deletecart(<?php echo $value['id'] ?>)"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 money-cart">
+                        <div class="col-sm-6 col-xs-6">
+                            <p>Đơn giá</p>
+                            <?php
+                            if ($value['sales'] == 1) {
+                                //$price_sales = $value['price'] - ($value['price'] * $value['price_sales'] / 100);
+                                $price_sales = $value['price_sales'];
+                                echo '<p class="price product-price">' . number_format($price_sales, 0, ',', '.') . 'đ</p>';
+                                //echo '<p class="price old-price">' . number_format($value['price'], 0, ',', '.') . 'đ </p>';
+                            } else {
+                                $price_sales = $value['price'];
+                                echo '<p class="price product-price">' . number_format($value['price'], 0, ',', '.') . 'đ </p>';
+                            }
+                            ?>    
+                        </div>
+                        <div class="col-sm-6 col-xs-6">
+                            <p>Thành tiền</p>
+                            <?php
+                            $total_money +=$qty * $price_sales;
+                            echo '<p class="price product-price">' . number_format($qty * $price_sales, 0, ',', '.') . 'đ</p>';
+                            ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <div class="row">
+            <div class="col-sm-5 col-xs-12 pull-right total-money">Tổng tiền thanh toán: <?php echo number_format($total_money, 0, ',', '.') . 'đ' ?></div>
+        </div>
+    </div>
+    <div class="page-content checkout-page check-out-mb">
+
+        <div class="box-border">
+        <form action="javascript:void(0)" method="post" id="form-by">
+             <input type="hidden" id="domain" value="<?php echo WEB_PATH.'/shoppingcart/postcheckout'?>"/>
+        <ul>
+            <li class="row">
+                <div class="col-sm-6">
+                    <label for="first_name" class="required">Họ tên<span>*</span></label>
+                  <input type="text" class="form-control input" name="name" id="name" placeholder="Họ tên" value="<?php echo $username . $username_guest ?>" <?php //if($username !=null || $username_guest !=null){ echo 'readonly';}?>/>
+                    <span id="name1-error1" class="error"></span>
+                </div><!--/ [col] -->
+                <div class="col-sm-6">
+                    <label for="last_name" class="required"> Điện thoại<span>*</span></label>
+                     <input type="text" class="form-control input" name="phone" id="phone" placeholder="Điện thoại" value="<?php echo $phone_guest.$phone_user ?>" <?php //if($phone_guest !=null || $phone_user !=null){ echo 'readonly';}?>/>
+                     <span id="phone-error1" class="error"></span>
+                </div><!--/ [col] -->
+            </li><!--/ .row -->
+            <li class="row">
+                <div class="col-sm-6">
+                    <label for="company_name"> Địa chỉ<span>*</span></label>
+                    <input type="text" class="form-control input" name="address" id="address" placeholder="Địa chỉ" value="<?php echo $address_guest.$address_user ?>" <?php //if($address_guest !=null || $address_user !=null){ echo 'readonly';}?>/>
+                     <span id="address-error1" class="error"></span>
+                </div><!--/ [col] -->
+                <div class="col-sm-6">
+                    <label for="email_address" class="required">Email</label>
+                    <input type="email" class="form-control input" name="email" id="email" placeholder="Email" value="<?php echo $email_guest.$emai_user ?>" <?php //if($emai_user !=null || $email_guest !=null){ echo 'readonly';}?>/>
+                    <span id="email-error1" class="error"></span>
+                </div><!--/ [col] -->
+            </li><!--/ .row -->
+            <li class="row">
+                <div class="col-sm-12">
+                    <label for="company_content"> Ghi chú</label>
+                    <textarea class="form-control input" id="contents" name="content" style="width:100%; border: 1px solid #ccc;" rows="5" placeholder="Ghi chu"></textarea>
+                </div><!--/ [col] -->               
+            </li><!--/ .row -->
+           
+            <li>
+                <div class="col-sm-12 box-dk">
+                    <input type="checkbox" checked name="dk" id="dieukhoan" /> <a href="<?php echo WEB_PATH.'/dieu-khoan-giao-dich.html'?>">Tôi đồng ý với các điều khoản giao dich của giadung88.com </a><br/>
+                 <span id="dieukhoan-error1" class="error"></span> 
+                </div>
+                <button onclick="checkout(1);" class="button btn-checkout btn-mb-ck">Đặt Hàng</button>
+                 <a href="<?php echo WEB_PATH ?>" class="button pull-right btn-reset btn-mb-ck">
+          Tiếp Tục Mua Hàng
+        </a>   
+                 
+            </li>
+        </ul>
+        </form>
+    </div>      
+
+    </div>
+<?php } ?>

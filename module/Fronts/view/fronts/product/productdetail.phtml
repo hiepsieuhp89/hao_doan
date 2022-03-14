@@ -1,0 +1,307 @@
+<?php
+use Zend\Session\Container;
+
+$session_customer_guest = new Container('customer_guest');
+$username_guest = $session_customer_guest->name_customer;
+$email_guest = $session_customer_guest->mail_customer;
+$phone_guest = $session_customer_guest->phone_customer;
+$address_guest = $session_customer_guest->address_customer;
+
+$session_user = new Container('userlogin');
+$username = $session_user->username;
+$emai_user = $session_user->email;
+$address_user = $session_user->address;
+$phone_user = $session_user->phone;
+?>
+
+<!-- breadcrumb -->
+<div class="breadcrumb clearfix">
+    <a class="home" href="<?php echo WEB_PATH ?>" >Trang chủ</a>
+    <span class="navigation-pipe">&nbsp;</span>
+    <a href="<?php echo WEB_PATH . '/san-pham.html' ?>" >Sản phẩm</a>
+    <span class="navigation-pipe">&nbsp;</span>
+    <a href="<?php echo WEB_PATH . '/san-pham/' . $product_detail['alias'] . '.html' ?>"><?php echo $product_detail['product_name'] ?></a>
+
+</div>
+<!-- ./breadcrumb -->
+<!-- row -->
+<div class="row">
+    <!-- Left colunm -->
+    <div class="column col-xs-12 col-sm-3 banner-site" id="left_column">
+        <!-- block best sellers -->
+        <div class="block left-module">
+            <p class="title_block">Sản phẩm nổi bật</p>
+            <div class="block_content">
+                <ul class="products-block best-sell">
+                    <?php
+                    foreach ($product_featured as $key_f => $value_f) {
+                        if ($value_f['id'] != $product_detail['id']) {
+                            ?>
+                            <li>
+                                <div class="products-block-left">
+                                    <a href="<?php echo WEB_PATH . '/san-pham/' . $value_f['alias'] . '.html' ?>">
+                                        <img src="<?php echo WEB_IMG .'images/'. $value_f['thumbnail'] ?>" alt="<?php echo $value_f['product_name'] ?>">
+                                    </a>
+                                </div>
+                                <div class="products-block-right">
+                                    <p class="product-name">
+                                        <a href="<?php echo WEB_PATH . '/san-pham/' . $value_f['alias'] . '.html' ?>"><?php echo $value_f['product_name'] ?></a>
+                                    </p>
+                                    <?php
+                                    if ($value_f['sales'] == 1) {
+                                        //$price_sales_f = $value_f['price'] - ($value_f['price'] * $value_f['price_sales'] / 100);
+                                        ?>
+                                        <p class="product-price"><?php echo number_format($value_f['price_sales'], 0, ',', '.') . 'đ / ' . $value_f['product_dv']; ?></p>
+                                        <p class="old-price-detail"><?php echo number_format($value_f['price'], 0, ',', '.') . 'đ / ' . $value_f['product_dv']; ?></p>
+
+                                    <?php } else { ?>
+                                        <p class="product-price"><?php echo number_format($value_f['price'], 0, ',', '.') . 'đ / ' . $value_f['product_dv']; ?></p>
+                                    <?php } ?>
+                            <!--<p class="product-price">$38,95</p>-->
+
+                                </div>
+                            </li>
+                            <?php
+                        }
+                    }
+                    ?>
+
+
+                </ul>
+            </div>
+        </div>
+        <!-- ./block best sellers  -->
+
+
+        <!-- left silide -->
+
+        <div class="col-left-slide left-module banner-site">
+            <?php
+            $i = 0;
+            foreach ($data_banner as $key_b => $value_b) {
+                if (++$i > 3)
+                    break;
+                ?>
+                <div class="banner-opacity">
+                    <a href="<?php echo $value_b['url'] ?>"><img src="<?php echo WEB_IMG . $value_b['img'] ?>" alt="<?php echo $value_b['title'] ?>"></a>
+                </div>
+            <?php } ?>
+        </div>
+        <!--./left silde-->
+    </div>
+
+    <!-- ./left colunm -->
+
+
+
+    <!-- Center colunm-->
+    <div class="center_column col-xs-12 col-sm-9" id="center_column">       
+        <!-- Product -->
+        <div id="product">
+            <div class="primary-box row">
+                <div class="pb-left-column col-xs-12 col-sm-6">
+                    <!-- product-imge-->
+                    <div class="product-image">
+                        <div class="product-full">
+                            <img id="product-zoom" src='<?php echo WEB_IMG .'images/'. $product_detail['medium'] ?>' data-zoom-image="<?php echo WEB_IMG .'images/'. $product_detail['img'] ?>"/>
+                        </div>
+                        <div class="product-img-thumb" id="gallery_01">
+                            <ul class="owl-carousel" data-items="3" data-nav="true" data-dots="false" data-margin="20" data-loop="false">
+                                <?php foreach ($img_product as $key_im => $value_im) { ?>
+                                    <li>
+                                        <a href="#" data-image="<?php echo WEB_IMG .'images/'. $value_im['medium'] ?>" data-zoom-image="<?php echo WEB_IMG .'images/'. $value_im['img'] ?>">
+                                            <img id="product-zoom"  src="<?php echo WEB_IMG .'images/'. $value_im['thumbnail'] ?>" /> 
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- product-imge-->
+                </div>
+                <div class="pb-right-column col-xs-12 col-sm-6">
+                    <h1 class="product-name"><?php echo $product_detail['product_name'] ?></h1>        
+                    <div class="product-price-group">
+                        <?php
+                        if ($product_detail['sales'] == 1) {
+                            //$price_sales = $product_detail['price'] - ($product_detail['price'] * $product_detail['price_sales'] / 100);
+			$price_sales = ($product_detail['price'] - $product_detail['price_sales'])*100/$product_detail['price'];
+                            ?>
+                            <span class="price"><?php echo number_format($product_detail['price_sales'], 0, ',', '.') . 'đ / ' . $product_detail['product_dv']; ?></span></br>
+                            <span class="old-price"><?php echo number_format($product_detail['price'], 0, ',', '.') . 'đ' ?></span>
+                            <span class="discount">Tiết kiệm <span style="color:#ff3366; font-weight:bold;"><?php echo round($price_sales ). '%' ?><span></span>
+                        <?php } else { ?>
+                            <span class="price"><?php echo number_format($product_detail['price'], 0, ',', '.') . 'đ / ' . $product_detail['product_dv']; ?></span>
+                        <?php } ?>
+
+                    </div>
+                    <div class="info-orther">
+                        <p>Mã sản phẩm: <?php echo $product_detail['code_id'] ?></p>
+                        <p>Xuất Xứ: <?php echo $product_detail['name_xuatxu'] ?></p>
+                        <p>Chất Liệu: <?php echo $product_detail['name_chatlieu'] ?></p>
+                        <p>Hãng sản xuất: <?php echo $product_detail['hangsx'] ?></p>
+                        <p>Tình trạng: <?php echo $product_detail['status_pro'] ?></p>
+                        <p>Nhân viên hỗ trợ: <span class="hotline"><?php echo $product_detail['user_support'] ?></span></p>
+                        <p>Điện thoại: <span class="hotline"><?php echo $product_detail['phone'] ?></span></p>
+                        <div class="fb-like" data-href="<?php echo WEB_PATH . '/san-pham/' . $product_detail['alias'] . '.html' ?>" data-layout="button_count"></div>
+                        <div class="fb-share-button" data-href="<?php echo WEB_PATH . '/san-pham/' . $product_detail['alias'] . '.html' ?>" data-layout="button_count"></div>
+                    </div>
+                    <div class="product-desc">
+                        <?php echo $product_detail['description'] ?>
+                    </div>
+                    <div class="form-option">               
+                        <div class="attributes">
+                            <div class="attribute-label">Số lượng:</div>
+                            <div class="attribute-list product-qty">
+                                 <input type="hidden" id="get_number" value="<?php echo $product_detail['quantity'] ?>"/>
+                                <div class="qty">
+                                    <input  id="option-product-qty" type="number" value="1">
+                                </div>
+
+                            </div>
+                            <button id="add-cart" onclick="addcart(<?php echo $product_detail['id']; ?>,1)" class="btn-add-cart hidden-xs" href="">MUA NGAY</button>
+                        </div>
+                    </div>
+                    <div class="product-desc hidden-md hidden-lg">
+                        <button id="add-cart" onclick="addcart(<?php echo $product_detail['id']; ?>,1)" class="btn-add-cart1" href=""><i class="fa fa-shopping-cart"></i> MUA NGAY</button>
+<a href="tel:<?php echo $product_detail['phone'] ?>" class="btn-add-cart2"><i class="fa fa-phone"></i> TƯ VẤN</a>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- tab product -->
+            <div class="product-tab">
+                <ul class="nav-tab">
+                    <li class="active">
+                        <a aria-expanded="false" data-toggle="tab" href="#product-detail">Thông tin sản phẩm</a>
+                    </li>
+                    <!--<li>
+                        <a aria-expanded="true" data-toggle="tab" href="#information">information</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#reviews">reviews</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#extra-tabs">Extra Tabs</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#guarantees">guarantees</a>
+                    </li>-->
+                </ul>
+                <div class="tab-container">
+                    <div id="product-detail" class="tab-panel active">
+                        <?php echo $product_detail['content'] ?>
+                    </div>            
+                </div>
+            </div>
+            <!-- ./tab product -->
+
+
+            <!-- ./tab KhoiNguyen -->
+<div class="col-sm-12 khoi1">
+   <div class="col-sm-6">
+ 	<div class="col-sm-12 "><h2><?php echo $product_detail['product_name'] ?></h2></div>        
+        <div class="col-sm-12 khoi2">
+                        <?php
+                        if ($product_detail['sales'] == 1) {
+                            //$price_sales = $product_detail['price'] - ($product_detail['price'] * $product_detail['price_sales'] / 100);
+			$price_sales = ($product_detail['price'] - $product_detail['price_sales'])*100/$product_detail['price'];
+                            ?>
+                            <span><?php echo number_format($product_detail['price_sales'], 0, ',', '.') . 'đ / ' . $product_detail['product_dv']; ?></span>
+                            <!--<span><?php echo number_format($product_detail['price'], 0, ',', '.') . 'đ / ' . $product_detail['product_dv']; ?></span>
+                            <span><?php echo '-' . round($price_sales) . '%' ?></span>-->
+                        <?php } else { ?>
+                            <span><?php echo number_format($product_detail['price'], 0, ',', '.') . 'đ / ' . $product_detail['product_dv']; ?></span>
+                        <?php } ?>
+
+         </div>
+   </div>
+   <div class="col-sm-3 khoi3">
+        <span class="glyphicon glyphicon-grain"> </span> Giao hàng toàn quốc</br>
+        <span class="glyphicon glyphicon-grain"> </span> 01 đổi 01 trong 07 ngày đầu</br>
+        <span class="glyphicon glyphicon-grain"> </span> Thanh toán khi nhận hàng</br>
+   </div>
+   <div class="col-sm-3 khoi4">
+        <button id="add-cart" onclick="addcart(<?php echo $product_detail['id']; ?>,1)" class="btn-add-cart" href="">MUA NGAY</button>
+   </div>
+</div>
+            <!-- ./tab KhoiNguyen -->
+
+
+            
+            <div class="col-sm-12 comment-facebook">
+				<div class="fb-comments" data-width="100%" data-numposts="10"></div>
+              <!-- <div data-width="100%" class="fb-comments" data-href="<?php echo WEB_PATH . '/san-pham/' . $product_detail['alias'] . '.html' ?>" data-numposts="10"></div>-->
+            </div>
+            
+            <!-- box product -->
+            <div class="page-product-box">
+
+                <h3 class="heading">Sản phẩm cùng loại</h3>
+                <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":2},"600":{"items":3},"1000":{"items":4}}'>
+                    <?php
+                    foreach ($product_same as $key => $value) {
+                        if ($value['id'] != $product_detail['id']) {
+                            ?>
+                            <li>
+                                <div class="product-container">
+                                    <div class="left-block">
+                                        <a href="<?php echo WEB_PATH . '/san-pham/' . $value['alias'] . '.html' ?>">
+                                            <img class="img-responsive" alt="<?php echo $value['product_name'] ?>" src="<?php echo WEB_IMG .'images/'. $value['thumbnail'] ?>" />
+                                        </a>
+                                        <?php if ($value['sales'] == 1) {  $price_sales = ($value['price'] - $value['price_sales'])*100/$value['price'];?>
+                                            <div class="price-percent-reduction2"><?php echo '-' . round($price_sales) . '% OFF' ?></div>
+                                        <?php } ?>
+
+                                        <!--<div class="add-to-cart">
+                                            <a title="Đặt Hàng" onclick="addcart(<?php echo $value['id']; ?>,0)" href="javascript:void(0)">Đặt Hàng</a>
+                                        </div>-->
+                                    </div>
+                                    <div class="right-block">
+                                        <h5 class="product-name"><a href="<?php echo WEB_PATH . '/san-pham/' . $value['alias'] . '.html' ?>"><?php echo $value['product_name'] ?></a></h5>
+
+                                        <div class="content_price">
+                                            <?php
+                                            if ($value['sales'] == 1) {
+                                                //$price_sales = $value['price'] - ($value['price'] * $value['price_sales'] / 100);
+                                                ?>
+                                                <span class="price product-price"><?php echo number_format($value['price_sales'], 0, ',', '.') . 'đ / ' . $value['product_dv']; ?></span>
+                                                <span class="price old-price"><?php echo number_format($value['price'], 0, ',', '.') . 'đ / ' . $value['product_dv']; ?></span>
+                                            <?php } else { ?>
+                                                <span class="price product-price"><?php echo number_format($value['price'], 0, ',', '.') . 'đ / ' . $value['product_dv']; ?></span>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                    }
+                    ?>
+
+                </ul>
+            </div>
+
+        </div>
+        <!-- Product -->   
+    </div>
+    <!-- ./ Center colunm -->
+</div>
+<!-- ./row-->
+<div class="modal fade" id="show-error">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body body-error">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">       
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

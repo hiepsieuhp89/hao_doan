@@ -1,0 +1,132 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Chi tiết sản phẩm <span style="color: red"><?php echo $data['code_id']?></span></span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>   
+                                <input type="hidden" id="url<?php echo $data['id'] ?>" value="<?php echo WEB_PATH?>/system/product/trash/<?php echo $data['id'].'/trash-'.$data['delete_pro']; ?>" />
+                               
+                                <button onclick="trashaction(<?php echo $data['id']?>)" class="btn btn-danger"><i class="icon-trash"></i> Xóa sản phẩm</button>
+                               
+                            </li>
+                            <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/product/edit/<?php echo $data['id'] ?>'>
+                                    <button class="btn btn-primary"><i class="icon-edit"></i> Sửa</button>
+                                </a>
+                            </li>
+                             <li>
+                                <a href='<?php echo WEB_PATH.'/system/product'?>'>
+                                    <button class="btn btn-primary"><i class="icon-arrow-left"></i> Quay lại</button>
+                                    
+                                </a>
+                             </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                   <!-- <div class='box-header blue-background'>
+                        <div class='title'>List User</div>
+                        <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>
+                    </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area' style="padding:15px;">
+                                <p><span>Mã sản phẩm:</span> <?php echo $data['code_id']?></p>
+                                <p><span>Tên sản phẩm:</span> <?php echo $data['product_name']?></p>
+                                <p><span>Người đăng:</span> <?php echo $data['fullname']?></p>
+                                <p><span>Người Sửa:</span> <?php if($data['user_edit']==null){ echo 'Sản phẩm này chưa sửa';}else{ echo $data['user_edit'];}?></p>
+                                 <p><span>Ngày đăng:</span> <?php echo date('d-m-Y H:i:s', strtotime($data['date'])); ?></p>
+                                <p><span>Ngày sửa:</span> <?php echo date('d-m-Y H:i:s', strtotime($data['date_mod'])); ?></p>
+                                <p><span>Số lượng :</span> <?php echo $data['quantity'].' '. $data['product_dv']?></p>
+                                <p><span>Số lượng đã bán:</span> <?php if($data['number_by']==0){ echo '0 '.$data['product_dv'] ;}else{ echo $data['number_by'].' '. $data['product_dv'];}?></p>
+                                <p><span>Giá bán:</span> <?php echo number_format($data['price'],0,',', '.').'đ / '.$data['product_dv'];?></p>
+                                <p><span>Khuyến mại:</span> <?php if($data['sales']==0){ echo '0%' ;}else{ echo $data['price_sales'].'%';}?></p>
+                                <p><span>Danh mục:</span> <?php echo $data['name_cat']?></p>
+                                <p><span>Hãng sản xuất:</span> <?php echo $data['manufacture']?></p>
+                                <p><span>Xuất xứ:</span> <?php echo $data['name_xuatxu']?></p>
+                                <p><span> Chất liệu:</span> <?php echo $data['name_chatlieu']?></p>
+                                 <p><span>Trạng thái:</span> <?php echo $data['status_pro']?></p>
+                                  <p><span>Hình ảnh:</span></p>
+                                  <ul class="list-img">
+                                      <?php                                       
+                                      foreach ($data_img as $key=>$value){?>
+                                      <li><img src="<?php echo WEB_IMG.'images/'.$value['thumbnail']?>" width="100" height="100"/></li>
+                                      <?php } ?>
+                                  </ul>
+                                   <p><span>Mô tả ngắn:</span></p>
+                                   <p><?php echo $data['description']?></p>
+                                   <p><span>Thông tin sản phẩm:</span></p>
+                                   <p><?php echo $data['content']?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- //////////////////DELETE///////////////////--> 
+<div class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  blue-background">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">XÓA SẢN PHẨM</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm này</p>
+
+            </div>
+            <div class="modal-footer ">
+                <span id="btn-del"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+            </div>
+        </div>
+        <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal-dialog --> 
+</div>
+
+
+<style>
+    .select-pro select{
+        font-size: 12px;
+        height: 30px;
+    }
+    .list-img{
+        list-style: none;
+        width: 100%;
+        float: left;
+    }
+    .list-img li{
+        float:left;
+        margin: 10px;
+    }
+    .list-img li img{
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .scrollable-area p span{
+        font-weight: bold;
+        color: red;
+    }
+</style>

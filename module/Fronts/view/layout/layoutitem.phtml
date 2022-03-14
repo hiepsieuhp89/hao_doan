@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php 
+            echo $this->HeadTitle();
+            echo $this->headMeta();
+            ?>
+        <link rel="shortcut icon" href="<?php echo WEB_IMG . $setting->favicon ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/select2/css/select2.min.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery.bxslider/jquery.bxslider.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/owl.carousel/owl.carousel.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/fancyBox/jquery.fancybox.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/animate.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/responsive.css" />
+
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/stylemain.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/option2.css" />
+       
+	     <?php
+			 $filename = WEB_MEDIA . '/public/file/google.txt';
+        $content = file_get_contents($filename, true);
+        echo $content
+        ?> 
+	   
+	   <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1714218682179112');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1714218682179112&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+	   </head>
+    <body class="category-page">
+        <!-- HEADER -->
+        <?php
+        echo $this->partial('fronts/elements/header.phtml', array(
+            'setting' => $setting,
+            'data_cat'=>$data_cat,
+            'data_parent'=>$data_parent
+        ));
+        ?>
+        <!-- end header -->
+        <!-- page wapper-->
+        <div class="columns-container">
+            <div class="container" id="columns">
+                <!-- breadcrumb -->
+                <div class="breadcrumb clearfix">
+                    <a class="home" href="<?php echo WEB_PATH?>" >Trang chủ</a>
+                    <span class="navigation-pipe">&nbsp;</span>
+                   <?php if(isset($title_page)){ echo $title_page;}?>
+                </div>
+                <!-- ./breadcrumb -->
+                <!-- row -->
+                <div class="row">
+                    <!-- Left colunm -->
+                    <?php
+                    echo $this->partial('fronts/elements/left.phtml', array(
+                        'setting' => $setting,
+                        'show_banner'=>$show_banner,
+                        'data_banner'=>$data_banner,
+                        'brand'=>$brand,
+                        'xuatxu'=>$xuatxu,
+                        'chatlieu'=>$chatlieu,
+                       'filter'=>$filter,
+                        'product_left'=>$product_left,
+                       /* 'count_khoanggia'=>$count_khoanggia,
+                        'count_brand'=>$count_brand,
+                        'count_xuatxu'=>$count_xuatxu,
+                        'count_chatlieu'=>$count_chatlieu*/
+                        
+                    ));
+                  
+                    ?>
+                    <!-- ./left colunm -->
+                    <!-- Center colunm-->
+                    <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                        <?php echo $this->content ?>
+                    </div>
+                    <!-- ./ Center colunm -->
+                </div>
+                <!-- ./row-->
+            </div>
+        </div>
+        <!-- ./page wapper-->
+        <!-- Footer -->
+        <?php
+        echo $this->partial('fronts/elements/footer.phtml', array(
+            'setting' => $setting,
+            'acticre'=>$acticre,
+        ));
+        ?>
+        <script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/js/productfilter.js"></script>
+    </body>
+
+</html>

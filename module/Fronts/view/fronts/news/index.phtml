@@ -1,0 +1,41 @@
+<h2 class="page-heading">
+    <span class="page-heading-title2">Tin tức</span>
+</h2>
+
+<ul class="blog-posts">
+    <?php foreach ($paginator as $key => $value) { ?>
+        <li class="post-item">
+            <article class="entry">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="entry-thumb image-hover2">
+                            <a href="<?php echo WEB_PATH . '/tin-tuc/' . $value->news_alias . '.html' ?>">
+                                <img src="<?php echo WEB_IMG . $value->news_img ?>" alt="<?php echo $value->news_title ?>" onerror=this.src="<?php echo WEB_IMG ?>/images/imgdefault.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="entry-ci">
+                            <h3 class="entry-title"><a href="<?php echo WEB_PATH . '/tin-tuc/' . $value->news_alias . '.html' ?>"><?php echo $value->news_title ?></a></h3>
+                            <div class="entry-meta-data">                                            
+                            <span class="date"><i class="fa fa-calendar"></i> <?php echo date('d-m-Y', strtotime($value->news_date)); ?></span>
+                            </div>
+                            <div class="entry-excerpt">
+                                <?php echo $value->news_descripion ?>
+                            </div>
+                            <div class="entry-more">
+                                <a href="<?php echo WEB_PATH . '/tin-tuc/' . $value->news_alias . '.html' ?>">Chi tiết <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </li>
+
+    <?php } ?>  
+</ul>
+<?php
+echo $this->paginationControl(
+        $paginator, 'Sliding', '/fronts/news/Page.phtml'
+);
+?>

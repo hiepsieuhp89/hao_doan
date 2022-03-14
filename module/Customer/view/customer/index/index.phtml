@@ -1,0 +1,159 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Quản lý khách hàng</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                <table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                STT
+                                            </th>
+                                            <th>
+                                               Tên khách hàng
+                                            </th>
+                                            <th>
+                                              Email
+                                            </th>
+                                            <th>
+                                                Điện thoại
+                                            </th>
+                                            <th>
+                                                Số đơn hàng
+                                            </th>
+                                            <th>
+                                                Ngày  tạo
+                                            </th>
+                                            <th>
+                                                 Trạng thái
+                                            </th>																
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <?php
+                                        $stt = '';
+                                        foreach ($data as $key => $value) {
+                                            $stt ++;
+                                            ?>
+
+                                            <tr>
+                                                <td><?php echo $stt; ?></td>
+                                                <td><?php echo $value['fullname']; ?></td>
+                                                <td>
+                                                   <?php echo $value['email']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $value['phone']; ?>
+                                                </td>
+                                                 <td>
+                                                     <a href="<?php echo WEB_PATH?>/system/order/odercustomer?cus=<?php echo $value['id']?>">
+                                                     <span class="btn btn-xs btn-info">
+                                                    <?php echo count($count_oder[$value['id']]); ?>
+                                                         Đơn hàng
+                                                     </span>
+                                                     </a>
+                                                </td>
+                                                <td><?php echo date('d-m-Y', strtotime($value['date'])); ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($value['status'] == 1) {
+                                                        echo '<a href=' . WEB_PATH . '/system/customer/status/' . $value['id'] . '/' . $value['status'] . '
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href=' . WEB_PATH . '/system/customer/status/' . $value['id'] . '/' . $value['status'] . '
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+
+
+                                                <td>
+                                                    <div class='text-right'>
+                                                        <a class='btn btn-primary btn-xs' href='<?php echo WEB_PATH; ?>/system/customer/view/<?php echo $value['id']; ?>.html'>
+                                                            <i class='icon-eye-open'></i>
+                                                        </a>
+                                                        <a onclick="deleteaction(<?php echo $value['id']; ?>)"class='btn btn-danger btn-xs'>
+                                                            <i class='icon-trash'></i>
+                                                        </a>
+                                                    </div>
+                                                    <input type="hidden" id="url" value="customer/delete/" />
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th> Tên khách hàng</th>
+                                            <th> Email</th>
+                                            <th> Điện thoại</th>
+                                            <th>Ngày tạo</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- //////////////////DELETE///////////////////--> 
+<div class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  blue-background">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">XÓA KHÁCH HÀNG</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa khách hàng này khỏi hệ thống.</p>
+
+            </div>
+            <div class="modal-footer ">
+                <span id="btn-del"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+            </div>
+        </div>
+        <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal-dialog --> 
+</div>
+

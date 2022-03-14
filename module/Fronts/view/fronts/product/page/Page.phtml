@@ -1,0 +1,25 @@
+<?php if ($this->pageCount): ?>
+<nav>
+        <ul class="pagination">
+            <li <?php echo!isset($this->previous) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url('Sanpham', array('page' => $this->first)); ?>">&laquo;</a></li>
+            <li <?php echo!isset($this->previous) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url('Sanpham', array('page' => $this->previous)); ?>">&lsaquo;</a></li>
+
+
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <li <?php echo $page == $this->current ? 'class="active"' : ''; ?>><a href="<?php echo $this->url('Sanpham', array('page' => $page)); ?>">
+                        <?php echo $page; ?>
+                    </a></li>
+            <?php endforeach; ?>
+
+            <!-- Next page link -->
+            <li <?php echo!isset($this->next) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url('Sanpham', array('page' => $this->next)); ?>">&rsaquo;</a></li>
+            <!-- Last page link -->
+            <li <?php echo!isset($this->next) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url('Sanpham', array( 'page' => $this->last)); ?>">&raquo;</a></li>
+        </ul>
+</nav>
+<?php endif; ?>

@@ -1,0 +1,124 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span>Sửa ảnh Slideshow</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>
+                            <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/banner'>
+                                    <button class="btn btn-danger"><i class="icon-arrow-left"></i> Quay lại</button>
+                                </a>
+                            </li>                        
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <?php
+                    if (isset($alert)) {
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>-->
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>
+                        <!-- <button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                       <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+
+                        <form method="post" id="form-admin" class='form form-horizontal validate-form' style='margin-bottom: 0;' enctype="multipart/form-data">
+                            <div class="content-tab tab-content1">
+
+                                <div class='form-group'>
+                                    <label class='control-label col-sm-3' for='validation_name'>Tiêu đề</label>
+                                    <div class='col-sm-6 controls'>
+                                        <input class='form-control' data-rule-minlength='2' data-rule-required='true' value="<?php echo $data['title'] ?>" id='validation_name' name="title"  placeholder=' Tiêu đề' type='text' >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="control-label col-sm-3">
+                                        <label for="validation_url">URL</label>
+                                        <small class="help-block">http://</small>
+                                    </div>
+                                    <div class="col-sm-6 controls">
+                                        <input class="form-control" data-rule-required="true" data-rule-url="true" value="<?php echo $data['url'] ?>" id="validation_url" name="url" placeholder="URL" type="text">
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group">
+                                 <label class="control-label col-sm-3" for="validation_select">Vị trí banner</label>
+                                 <div class="col-sm-6 controls">
+                                     <select class="form-control" data-rule-required="true" id="validation_select" name="location">
+                                         <option value="">Chọn vị trí</option>
+                                         <option <?php
+                                if ($data['location'] == 1) {
+                                    echo 'selected';
+                                }
+                                ?> value="1">Trái 1</option>
+                                         <option <?php
+                                if ($data['location'] == 2) {
+                                    echo 'selected';
+                                }
+                                ?> value="2">Trái 2</option>
+                                         <option <?php
+                                if ($data['location'] == 3) {
+                                    echo 'selected';
+                                }
+                                ?> value="3">Trái 3</option>
+                                         
+                                     </select>
+                                 </div>
+                             </div>-->
+
+
+
+                                <div class='form-group'>
+                                    <label class='control-label  col-sm-3' for='validation_name'>Ảnh Banner</label>
+
+                                    <div class='col-sm-2 controls'>                                                                                                           
+                                        <span class='btn btn-success fileinput-button'>
+                                            <i class='icon-upload-alt icon-white'></i>
+                                            <span> Chọn ảnh...</span>
+                                            <input data-bfi-disabled='' multiple='' name='img' id="asd" type='file'>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-sm-4"><img style="width:100%"id="img" src="<?php echo WEB_IMG . $data['img'] ?>" /></div>
+
+                                </div>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

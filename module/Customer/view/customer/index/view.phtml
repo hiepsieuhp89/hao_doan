@@ -1,0 +1,110 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Thông tin chi tiết khách hàng</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                             <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/customer'>
+                                    <button class="btn btn-danger"><i class="icon-arrow-left"></i> Quay lại</button>
+                                </a>
+                            </li>     
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                <table class='table table-bordered table-striped' style='margin-bottom:0;'>
+                                   
+                                    <tbody>
+                                        <tr>
+                                            <td>Tên khách hang :</td>
+                                            <td><?php echo $data['fullname']?></td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <td>Email :</td>
+                                            <td><?php echo $data['email']?></td>
+                                        </tr>
+                                        
+                                         <tr>
+                                            <td>Địa chỉ :</td>
+                                             <td><?php echo $data['address']?></td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <td> Điện thoại :</td>
+                                            <td><?php echo $data['phone']?></td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <td> Thành Phố :</td>
+                                             <td><?php echo $data['city']?></td>
+                                        </tr>
+                                        
+                                         <tr>
+                                            <td> Yahoo :</td>
+                                            <td><?php echo $data['yahoo']?></td>
+                                        </tr>
+                                       
+                                         <tr>
+                                            <td>Skype :</td>
+                                             <td><?php echo $data['skype']?></td>
+                                        </tr>
+                                       
+                                         <tr>
+                                            <td> Facebook :</td>
+                                             <td><?php echo $data['facebook']?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tình trạng :</td>
+                                            <td>
+                                       <?php
+                                                    if ($data['status'] == 1) {
+                                                        echo 'Đang hoạt động';
+                                                        
+                                                    } else {
+                                                        echo 'Đang bị khóa';
+                                                    }
+                                                    ?>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>  Ngày đăng ký :</td>
+                                            <td><?php echo date('d-m-Y', strtotime($data['date'])); ?></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

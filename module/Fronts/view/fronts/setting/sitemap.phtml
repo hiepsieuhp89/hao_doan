@@ -1,0 +1,46 @@
+<?php
+use Zend\Session\Container;
+ $session_user = new Container('userlogin');
+$username=$session_user->username;
+
+?>
+<div class="box-slider-left">
+    <div class="box-product">
+        <h3 class="title-product-2">
+            <span>Sitemap</span>
+        </h3>
+    </div>
+    <div class="box-product">
+        <ul class="sitemap">
+            <li><a href="<?php echo WEB_PATH ?>">Trang chủ</a></li>
+            <li><a href="<?php echo WEB_PATH ?>/gioi-thieu.html">Giới thiệu</a></li>
+            <li><a href="<?php echo WEB_PATH ?>/san-pham.html">Sản phẩm</a></li>
+            <li><a href="<?php echo WEB_PATH ?>/tin-tuc.html">Tin tức</a></li>
+            <li><a href="<?php echo WEB_PATH ?>/ban-do.html">Bản đồ</a></li>
+            <li><a href="<?php echo WEB_PATH ?>/lien-he.html">Liên hệ</a></li>
+             <?php if($username == null){?>
+                    <li><a href="<?php echo WEB_PATH.'/tai-khoan/dang-nhap.html'?>">Tài khoản</a></li>                  
+                    <?php } else { ?>
+                    <li><a href="<?php echo WEB_PATH.'/tai-khoan/personal.html'?>">Tài khoản</a></li>                   
+             <?php } ?>
+            <li><a href="#">Danh mục sản phẩm</a>
+                <ul>
+                     <?php foreach ($data_cat as $keycat=>$valuecat){ ?>
+                    <li><a href="<?php echo WEB_PATH.'/san-pham/danh-muc/'.$valuecat['alias'].'.html'?>"><i class="fa fa-arrow-circle-right"></i> <?php echo $valuecat['name']?></a>
+                         <?php
+                            $sub_menu=$data_parent[$valuecat['id']];
+                            if($sub_menu !=null){
+                            ?>
+                            <ul>
+                                <?php foreach ($sub_menu as $keysub =>$valuesub){ ?>
+                                <li><a href="<?php echo WEB_PATH.'/san-pham/danh-muc/'.$valuesub['alias'].'.html'?>"><i class="fa fa-angle-double-right"></i> <?php echo $valuesub['name']?></a></li>
+                                <?php } ?>
+                            </ul>
+                            <?php } ?>
+                    </li>                  
+                     <?php } ?>
+                </ul>                    
+            </li>
+        </ul>
+    </div>
+</div>

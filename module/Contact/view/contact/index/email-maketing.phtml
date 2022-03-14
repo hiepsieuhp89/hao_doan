@@ -1,0 +1,98 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>TEST EMAIL MAKETING</span>
+                    </h1>
+                    <!--<div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/contact'>
+                                    <button class="btn btn-danger"><i class="icon-arrow-left"></i> Quay lại</button>
+                                </a>
+                            </li>     
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                
+                            </div>
+                        </div>
+                        <div class='box-header' style="background-color: #1799A3; ">
+                            <div class='title'><h3 style="color: #fff; margin:0px;line-height: 40px; padding-left: 15px;">Trả lời khách hàng</h3></div>                                
+                        </div>
+                        <div class='box-content'>
+
+                            <form method="post" id="form-admin" enctype="multipart/form-data" class='form form-horizontal validate-form' style='margin-bottom: 0;'>
+                                <div class="content-tab tab-content1">
+                                    <div class="row">  
+                                        <div class='form-group col-sm-12'>
+                                            <label class='control-label col-sm-2' for='validation_name'></label>
+                                            <div class='col-sm-10 controls'>
+                                                <p style="color: #f00; font-style: italic;"><?php if(isset($alert)){ echo $alert;}?></p>
+                                            </div>
+                                        </div>
+                                        <div class='form-group col-sm-12'>
+                                            <label class='control-label col-sm-2' for='validation_name'>Tiêu đề</label>
+                                            <div class='col-sm-10 controls'>
+                                                <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_name' name="title"  placeholder='tiêu đề' type='text' >
+                                            </div>
+                                        </div> 
+										<div class='form-group col-sm-12'>
+                                            <label class='control-label col-sm-2' for='validation_name'>Email nhận</label>
+                                            <div class='col-sm-10 controls'>
+                                                <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_name1' name="email_form"  placeholder='' type='text' >
+                                            </div>
+                                        </div> 
+                                        <div class='form-group col-sm-12'>
+                                            <label class="col-md-2 control-label">Nội dung</label>
+                                            <div class="box-content col-sm-10">
+                                                <textarea name="content" class="form-control ckeditor1" id="wysiwyg12" rows="30" >
+                                                </textarea>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions" style="margin-bottom:0">
+                                        <div class="row">
+                                            <div class="col-sm-9 col-sm-offset-2">
+                                                <button class="btn btn-primary">                                                        
+                                                        Gửi đi
+                                                        <i class=" icon-circle-arrow-right"></i>
+                                                </button>   
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

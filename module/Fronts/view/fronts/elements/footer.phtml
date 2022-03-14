@@ -1,0 +1,132 @@
+<?php
+use Zend\Session\Container;
+ $product_search = new Container('productsearch');
+ $arrayproduct=$product_search->arrayproduct;
+
+?>
+<footer id="footer">
+    <div class="container">
+        <!-- introduce-box -->
+        <div id="introduce-box" class="row">
+            <div class="col-sm-3  box-ft">
+                <div id="address-box">
+                    <a href="<?php echo WEB_PATH ?>"><img src="<?php echo WEB_IMG . $setting->logo ?>" alt="" /></a>
+                    <div id="address-list">
+                        <div class="tit-name"><i class="fa fa-map-marker"></i></div>
+                        <div class="tit-contain"> <?php echo $setting->address ?></div>
+                        <div class="tit-name"><i class="fa fa-phone"></i></div>
+                        <div class="tit-contain"> <?php echo $setting->phone1 . ' - ' . $setting->phone2 ?></div>
+                        <div class="tit-name"><i class="fa fa-envelope"></i></div>
+                        <div class="tit-contain"> <?php echo $setting->email ?></div>
+
+                    </div>
+                    <div class="introduce-title">Kết nối cùng giadung88</div>
+                    <div class="social-link">
+                        <a href="<?php echo $setting->facebook ?>" rel="nofollow" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="<?php echo $setting->printer ?>" rel="nofollow" target="_blank"><i class="fa fa-youtube"></i></a>
+
+                        <a href="<?php echo $setting->twitter ?>" rel="nofollow" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="<?php echo $setting->google ?>" rel="nofollow" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-sm-3  box-ft box-ft-ps">
+
+                <div class="contact-infomastion">
+                    <div class="introduce-title">thông tin</div>
+                    <ul id="introduce-company"  >
+                        <?php
+                        foreach ($acticre as $key => $value) {
+                            if ($value['location'] == 1) {
+                                ?>
+                                <li><a href="<?php echo WEB_PATH . '/suport/' . $value['alias'] . '.html' ?>"><?php echo $value['title'] ?></a></li>
+                            <?php }
+                        }
+                        ?>
+                        <li><a href="<?php echo WEB_PATH . '/ban-do.html' ?>">Bản đồ</a></li>
+                        <li><a href="<?php echo WEB_PATH . '/lien-he.html' ?>">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+            <div class="col-sm-3  box-ft">
+                <div id="contact-box">
+                    <div class="introduce-title">quy định & chính sách</div>
+                    <ul id = "introduce-Account" >
+                        <?php
+                        foreach ($acticre as $key => $value) {
+                            if ($value['location'] == 2) {
+                                ?>
+                                <li><a href="<?php echo WEB_PATH . '/suport/' . $value['alias'] . '.html' ?>"><?php echo $value['title'] ?></a></li>
+                            <?php }
+                        }
+                        ?>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-sm-3 box-ft box-ft-ps1">
+                <?php echo $setting->fanpage ?>
+            </div>
+        </div><!-- /#introduce-box -->
+
+
+
+    </div> 
+</footer>
+<div id="modal_cart"  class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+	<div class="modal-body body-cart">     
+    </div>
+	</div>
+  </div>
+</div>
+<!-- <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a> -->
+<!-- Script-->
+<script>
+    var domain = '<?php echo WEB_PATH; ?>';
+</script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/owl.carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery.elevatezoom.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/js/jquery.actual.min.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/js/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/js/kendo.all.min.js"></script> 
+<script type="text/javascript" src="<?php echo WEB_STATIC ?>/theme/assets/js/theme-script.js"></script>
+
+<script>
+    $(function () {
+        var data = [<?php
+                        foreach ($arrayproduct as $keys => $values) {
+                            echo '"'.$values['product_name'].'",';
+                        }
+                        ?>
+        ];
+
+        $("#search-data").kendoAutoComplete({
+            dataSource: data,
+            separator: ", "
+        });
+    });
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.6&appId=544101992437000";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<?php
+$filename = WEB_MEDIA . '/public/file/suport.txt';
+$content = file_get_contents($filename, true);
+echo $content
+?>   

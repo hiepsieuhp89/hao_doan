@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="alexaVerifyID" content="KhLuVB4wAqA78t_DRxIo-77UI6E"/>
+         <?php 
+            echo $this->HeadTitle();
+            echo $this->headMeta();
+            ?>
+        <link rel="shortcut icon" href="<?php echo WEB_IMG.$setting->favicon?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/bootstrap/css/bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/font-awesome/css/font-awesome.min.css" />  
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/select2/css/select2.min.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery.bxslider/jquery.bxslider.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/owl.carousel/owl.carousel.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/lib/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/animate.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/responsive.css" />
+            
+         <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/assets/css/option2.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo WEB_STATIC ?>/theme/stylemain.css" />
+       
+         <?php
+        $filename = WEB_MEDIA . '/public/file/google.txt';
+        $content = file_get_contents($filename, true);
+        echo $content
+        ?> 
+	
+		<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1714218682179112');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1714218682179112&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+		</script>
+    </head>
+    <body class="home">      
+        <!-- HEADER -->
+        <?php
+     echo $this->partial('fronts/elements/header.phtml',array(
+            'setting' => $setting,   
+            'data_cat'=>$data_cat,
+            'data_parent'=>$data_parent,
+        ));
+             ?>
+        <!-- end header -->
+       
+        <?php echo $this->content;?>
+
+
+
+        <!-- Footer -->
+       <?php
+     echo $this->partial('fronts/elements/footer.phtml',array(
+            'setting' => $setting, 
+            'acticre'=>$acticre,
+        ));
+             ?>
+    </body>
+
+</html>

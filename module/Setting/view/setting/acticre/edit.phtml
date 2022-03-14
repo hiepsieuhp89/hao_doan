@@ -1,0 +1,117 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span>Sửa bài viết mới </span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                             <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>
+                            <li>
+                                <a href='<?php echo WEB_PATH?>/system/acticre'>
+                                    <button class="btn btn-danger"><i class="icon-arrow-left"></i> Quay lại</button>
+                                </a>
+                            </li>                        
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <?php
+                    if(isset($alert)){
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>-->
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>
+                        <!--<button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                        <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+                        <form method="post" id="form-admin" enctype="multipart/form-data" class='form form-horizontal validate-form' style='margin-bottom: 0;'>
+                            <div class="content-tab tab-content1">
+                            <div class="row">   
+                                <div class='form-group col-sm-12'>
+                                    <label class='control-label col-sm-3' for='validation_name'>Tiêu đề</label>
+                                    <div class='col-sm-6 controls'>
+                                        <input class='form-control' data-rule-minlength='2' data-rule-required='true' value="<?php echo $data_detail['title'];?>" id='validation_name' name="title"  placeholder='tiêu đề' type='text' >
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-sm-12">
+                                    <label class="col-md-3 control-label">Vị trí</label>
+                                    <div class="col-sm-9">
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="0" name="location" <?php if($data_detail['location']==0){ echo 'checked';}?> >
+                                            Hướng dẫn
+                                        </label>
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="1" name="location" <?php if($data_detail['location']==1){ echo 'checked';}?>>
+                                             Thông tin
+                                        </label>
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="2" name="location" <?php if($data_detail['location']==2){ echo 'checked';}?>>
+                                            Quy định và chính sách
+                                        </label>
+                                         <label class="radio radio-inline">
+                                            <input type="radio" value="3" name="location" <?php if($data_detail['location']==3){ echo 'checked';}?>>
+                                            Điều  Khoản
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label class="col-md-3 control-label">Trạng thái</label>
+                                    <div class="col-sm-9">
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="1" name="status" <?php if($data_detail['status']==1){ echo 'checked';}?>>
+                                            Hiển thị
+                                        </label>
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="0" name="status" <?php if($data_detail['status']==0){ echo 'checked';}?>>
+                                            Không  hiển thị
+                                        </label>
+
+                                    </div>
+                                </div>                                    
+
+                             
+                                <div class='form-group col-sm-12'>
+                                    <label class="col-md-2 control-label">Nội dung</label>
+                                    <div class="box-content col-sm-10">
+                                        <textarea name="content" class="form-control ckeditor" id="wysiwyg1" rows="10" >
+                                        <?php echo $data_detail['content'];?>
+                                    </textarea>
+
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            </div>
+                            
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

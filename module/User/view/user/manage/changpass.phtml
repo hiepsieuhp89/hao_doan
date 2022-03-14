@@ -1,0 +1,85 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-ok'></i>
+                        <span>Thay đổi mật khẩu</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>
+                                <a href='index.html'>
+                                    <i class='icon-bar-chart'></i>
+                                </a>
+                            </li>                        
+                            <li class='separator'>
+                                <i class='icon-angle-right'></i>
+                            </li>
+                            <li class='active'>Change password</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <span style="color: #f01b16; font-style: italic;"><?php
+                                            if (isset($thongbao)) {
+                                                echo $thongbao;
+                                            }
+                                            ?></span>
+                    <!--<div class='box-header blue-background'>
+                        <div class='title'>Change password</div>
+                        <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>
+                    </div>-->
+                    <div class='box-content'>
+                        <form method="post" class='form form-horizontal validate-form' style='margin-bottom: 0;'>
+
+
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_name'>Mật khẩu cũ</label>
+                                <div class='col-sm-6 controls'>
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_name' name="passold"  placeholder='Password Old' type='password'  >
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_password'>Mật khẩu mới</label>
+                                <div class='col-sm-6 controls'>
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_password' name="passwordnew"  placeholder='Password New' type='password' >
+                                </div>
+                            </div>                                                                                    
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_email'> Nhập lại mật khẩu</label>
+                                <div class='col-sm-6 controls'>
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_passwords' name="repass"  placeholder='Retype Password New' type='password' >
+                                </div>
+                            </div>
+
+                            <div class='form-actions' style='margin-bottom:0'>
+                                <div class='row'>
+                                    <div class='col-sm-9 col-sm-offset-3'>
+                                        <button class='btn btn-primary' name="send" type='submit'>
+                                            <i class='icon-save'></i>
+                                            SAVE
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

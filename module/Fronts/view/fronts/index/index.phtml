@@ -1,0 +1,154 @@
+<!-- Home slideder-->
+<div id="home-slider">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 slider-left"></div>
+            <div class="col-sm-9 header-top-right">
+                <div class="homeslider style-slider">
+                    <div class="content-slide">
+                        <ul id="contenhomeslider">
+                            <?php foreach ($data_slide as $key_sl => $value_sl) { ?>
+                                <li>
+                                    <a href="<?php echo $value_sl['url'] ?>">
+                                        <img alt="<?php echo $value_sl['title'] ?>" src="<?php echo WEB_IMG . $value_sl['img'] ?>" title="<?php echo $value_sl['title'] ?>" />
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Home slideder-->
+<!-- servives -->
+<div class="container service-hide-sm">
+    <div class="service ">
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/data/s1.png" />
+            </div>
+            <div class="info">
+                <a href="#"><h4>Giao hàng toàn quốc</h4></a>                
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/images/icon-xd.png" />
+            </div>
+            <div class="info">
+                <a href="#"><h4>1 đổi 1 trong vòng 7 ngày</h4></a>
+               
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/data/s3.png" />
+            </div>
+
+            <div class="info" >
+                <a href="#"><h4>Hỗ trợ 24/7</h4></a>               
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 service-item">
+            <div class="icon">
+                <img alt="services" src="<?php echo WEB_STATIC ?>/theme/assets/images/icon-cash.png" />
+            </div>
+            <div class="info">
+                <a href="#"><h4>Thanh toán khi nhận hàng</h4></a>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end services -->
+
+
+<div class="content-page option2">
+    <div class="container">
+        <!-- featured category fashion -->
+
+
+        <?php
+        foreach ($data_cattegory_index as $key_cat => $value_cat) {
+            $array_product = $data_product[$value_cat['id']]
+            ?>
+            <div class="category-featured furniture">
+                <nav class="navbar nav-menu show-brand bg-border-furniture border-nv<?php echo $value_cat['background'] ?>">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div><h2 class="navbar-brand background-nav<?php echo $value_cat['background'] ?>"><a href="<?php echo WEB_PATH.'/san-pham/danh-muc/'.$value_cat['alias'].'.html'?>"><!--<img alt="<?php echo $value_cat['name'] ?>" src="<?php echo WEB_IMG . $value_cat['icon'] ?>" />--><?php echo $value_cat['name'] ?></a></h2></div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                    </div><!-- /.container-fluid -->
+
+                </nav>
+
+                <div class="product-featured clearfix">
+                    <div class="banner-featured">
+                            <!--<div class="featured-text"><span>featured</span></div>-->
+                        <div class="banner-img">
+                            <a href="<?php echo WEB_PATH.'/san-pham/danh-muc/'.$value_cat['alias'].'.html'?>"><img alt="<?php echo $value_cat['name'] ?>" src="<?php echo WEB_IMG.$value_cat['img'] ?>" /></a>
+                        </div>
+                    </div>
+                    <div class="product-featured-content">
+                        <div class="product-featured-list">
+                            <div class="tab-container">
+                                <!-- tab product -->
+                                <div class="tab-panel active" id="tab-4">
+                                    <div class="box-right">
+                                        <ul class="product-list row">
+                                            <?php foreach ($array_product as $key_p => $value_p) { ?>
+                                                <li class="col-sm-3 col-xs-6">
+                                                    <div class="left-block">
+                                                        <div class="image banner-boder-zoom2">
+                                                        <a href="<?php echo WEB_PATH.'/san-pham/'.$value_p['alias'].'.html'?>">
+                                                            <img class="img-responsive" alt="<?php echo $value_p['product_name'] ?>" src="<?php echo WEB_IMG .'images/'. $value_p['thumbnail'] ?>" />
+                                                        </a>
+                                                        </div>
+                                                        <?php if($value_p['sales']==1){ $price_sales = ($value_p['price'] - $value_p['price_sales'])*100/$value_p['price'] ;?>
+                                                            <div class="price-percent-reduction2"><?php echo '-'.round($price_sales).'% OFF'?></div>
+                                                        <?php } ?>
+                                                       <!-- <div class="add-to-cart background-cart<?php echo $value_cat['background'] ?>">
+                                                            <a title="Đặt hàng" onclick="addcart(<?php echo $value_p['id']; ?>,0);" href="javascript:void(0);"> Đặt Hàng</a>
+                                                        </div>-->
+                                                    </div>
+                                                    <div class="right-block">
+                                                        <h3 class="product-name product-name-index"><a href="<?php echo WEB_PATH.'/san-pham/'.$value_p['alias'].'.html'?>"><?php echo $value_p['product_name'] ?></a></h3>
+                                                        <div class="content_price">
+                                                            <?php
+                                                            if ($value_p['sales'] == 1) {
+                                                                //$price_sales = $value_p['price'] - ($value_p['price'] * $value_p['price_sales'] / 100);
+                                                                ?>
+                                                                <span class="price product-price"><?php echo number_format($value_p['price_sales'], 0, ',', '.') . 'đ / ' . $value_p['product_dv']; ?></span>
+                                                                <span class="price old-price"><?php echo number_format($value_p['price'], 0, ',', '.') . 'đ / ' . $value_p['product_dv']; ?></span>
+                                                            <?php } else { ?>
+                                                                <span class="price product-price"><?php echo number_format($value_p['price'], 0, ',', '.') . 'đ / ' . $value_p['product_dv']; ?></span>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <?php } ?>
+
+            <div class="category-featured furniture">
+                  <h1 style="font-size:10px;color:#ffffff">ĐỒ GIA DỤNG GIÁ RẺ</h1>
+            </div>
+        <!-- end banner bottom -->
+    </div>
+</div>

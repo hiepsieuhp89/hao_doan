@@ -1,0 +1,113 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-ok'></i>
+                        <span>Thêm tài khoản mới</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>
+                                <a href='index.html'>
+                                    <i class='icon-bar-chart'></i>
+                                </a>
+                            </li>                        
+                            <li class='separator'>
+                                <i class='icon-angle-right'></i>
+                            </li>
+                            <li class='active'>Add User</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                     <span style="color: #f01b16; font-style: italic;"><?php
+                                            if (isset($thongbao)) {
+                                                echo $thongbao;
+                                            }
+                                    ?></span>
+                   <!-- <div class='box-header blue-background'>
+                        <div class='title'>Add User</div>
+                        <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>
+                    </div>-->
+                    <div class='box-content'>
+                        <form method="post" class='form form-horizontal validate-form' style='margin-bottom: 0;'>
+
+
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_name'>Tài khoản</label>
+                                <div class='col-sm-6 controls'>
+
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_name' name="username"  placeholder='Username' type='text' >
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_name'>Tên đầy đủ</label>
+                                <div class='col-sm-6 controls'>
+
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_namef' name="fullname"  placeholder='Full name' type='text' >
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_name'>Email</label>
+                                <div class='col-sm-6 controls'>
+
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_namef' name="email"  placeholder='Email' type='text' >
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_password'>Mật khẩu</label>
+                                <div class='col-sm-6 controls'>
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_password' name="password"  placeholder='Password' type='password' >
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3 col-sm-3' for='validation_password'> Nhập lại mật khẩu</label>
+                                <div class='col-sm-6 controls'>
+                                    <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_passwords' name="repass"  placeholder='Retype password' type='password' >
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label class='control-label col-sm-3' for='validation_select'>Phân quyền</label>
+                                <div class='col-sm-6 controls'>
+                                    <select class='form-control'  name='permission'>
+                                        <option>Chọn quyền cho tài khoản</option>
+                                        <option value="1"> Quản trị hệ thống</option>
+                                        <option value="2"> Cấu hình và quản lí nội dung website</option>
+                                        <option value="3"> Quản lí đơn hàng và sản phẩm</option>
+                                        <option value="4"> Quản lí  sản phẩm</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class='form-actions' style='margin-bottom:0'>
+                                <div class='row'>
+                                    <div class='col-sm-9 col-sm-offset-3'>
+                                        <button class='btn btn-primary' name="send" type='submit'>
+                                            <i class='icon-save'></i>
+                                            SAVE
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

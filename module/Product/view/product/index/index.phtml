@@ -1,0 +1,334 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-th'></i>
+                        <span>Quản lý sản phẩm</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>        
+                                <a href='<?php echo WEB_PATH; ?>/system/product/trashproduct'>
+                                    <button class="btn btn-danger"><i class="icon-trash"></i> Thùng rác</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='<?php echo WEB_PATH; ?>/system/product/add'>
+                                    <button class="btn btn-primary"><i class="icon-plus"></i> Thêm mới</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+                    <!-- <div class='box-header blue-background'>
+                         <div class='title'>List User</div>
+                         <div class='actions'>
+                             <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                             </a>
+ 
+                             <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                             </a>
+                         </div>
+                     </div>-->
+                    <div class='box-content box-no-padding'>
+                        <div class='responsive-table'>
+                            <div class='scrollable-area'>
+                                <table id="test-table" class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                STT
+                                            </th>
+                                            <th>
+                                                Hình ảnh
+                                            </th>
+                                            <th>
+                                                Mã sản phẩm
+                                            </th>
+                                            <th>
+                                                Tên sản phẩm
+                                            </th>
+                                            <th>
+                                                Danh mục
+                                            </th>
+                                            <th>
+                                                Trạng thái
+                                            </th>
+                                            <th>
+                                                Hiển thị trang chủ
+                                            </th>
+                                            <th>
+                                                Hiển thị
+                                            </th>
+                                            <th>
+                                                Ngày đăng
+                                            </th>
+                                            <th>
+                                                Ngày sửa
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <!--<tbody>
+
+                                        <?php
+                                        $stt = '';
+                                        foreach ($paginator as $key => $value) {
+                                            $stt++;
+                                            ?>
+
+                                            <tr>
+                                                <td><?php echo $stt; ?></td>
+
+                                                <td>
+                                                    <img src="<?php echo WEB_IMG . 'images/' . $value->thumbnail ?>" width="40" onerror=this.src="<?php echo WEB_IMG ?>/images/imgdefault.jpg" />
+                                                </td>
+                                                <td><?php echo $value->code_id; ?></td>
+                                                <td><?php echo $value->product_name; ?></td>
+                                                <td><?php echo $value->name_cat; ?></td>
+                                                <td>
+
+                                                    <div class='col-sm-9 controls select-pro'>
+                                                        <select class='form-control' data-rule-required="true" id="status-pro" onchange="productstatus(<?php echo $value->id ?>)" name='manufa_id'>
+                                                            <option <?php
+                                                            if ($value->status_pro == 'Đang bán') {
+                                                                echo 'selected';
+                                                            }
+                                                            ?> value="Đang bán"> Đang bán</option>
+                                                            <option <?php
+                                                            if ($value->status_pro == 'Tạm hết hàng') {
+                                                                echo 'selected';
+                                                            }
+                                                            ?> value="Tạm hết hàng">Tạm hết hàng</option>
+                                                            <option <?php
+                                                            if ($value->status_pro == 'Ngừng kinh doanh') {
+                                                                echo 'selected';
+                                                            }
+                                                            ?> value="Ngừng kinh doanh"> Ngừng kinh doanh</option>
+                                                        </select>
+                                                    </div>                                    
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($value->show_index == 1) {
+                                                        echo '<a href=' . WEB_PATH . '/system/product/showindex/' . $value->id . '/show=' . $value->show_index . '
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href=' . WEB_PATH . '/system/product/showindex/' . $value->id . '/show=' . $value->show_index . '
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($value->status == 1) {
+                                                        echo '<a href=' . WEB_PATH . '/system/product/status/' . $value->id . '/' . $value->status . '
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href=' . WEB_PATH . '/system/product/status/' . $value->id . '/' . $value->status . '
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td><?php echo date('d-m-Y H:i:s', strtotime($value->date)); ?></td>
+                                                <td><?php echo date('d-m-Y H:i:s', strtotime($value->date_mod)); ?></td>
+
+                                                <td>
+                                                    <div class='text-right'>
+                                                        <a class='btn btn-info btn-xs' href='<?php echo WEB_PATH; ?>/system/product/view/<?php echo $value->id; ?>'>
+                                                            <i class='icon-eye-open'></i>
+                                                        </a>
+                                                        <a class='btn btn-primary btn-xs' href='<?php echo WEB_PATH; ?>/system/product/edit/<?php echo $value->id; ?>'>
+                                                            <i class='icon-edit'></i>
+                                                        </a>
+                                                        <a onclick="trashaction(<?php echo $value->id ?>)"class='btn btn-danger btn-xs'>
+                                                            <i class='icon-trash'></i>
+                                                        </a>
+                                                        <a title="Xóa vĩnh viễn" href="<?php echo WEB_PATH . '/system/product/deleteproduct/' . $value->id ?>" class='btn btn-danger btn-xs'>
+                                                            <i class="icon-remove"></i>
+                                                        </a>
+                                                    </div>
+
+                                                </td>
+                                        <input type="hidden" id="url<?php echo $value->id ?>" value="product/trash/<?php echo $value->id . '/trash-' . $value->delete_pro; ?>" />
+                                        </tr>
+                                    <?php } ?>
+
+                                    </tbody>-->
+									 <tbody>
+                                                                               
+                                        <?php 
+                                        $stt='';
+                                        foreach ($data as $key => $value) {
+                                            $stt++;
+                                            $id_product=$value['id'];
+                                            ?>
+
+                                            <tr>
+                                                <td><?php echo $stt; ?></td>
+                                                
+                                                <td>
+                                                    <img src="<?php echo WEB_IMG . 'images/' . $value['thumbnail'] ?>" width="40" onerror=this.src="<?php echo WEB_IMG ?>/images/imgdefault.jpg" />
+                                                </td>
+                                                <td><?php echo $value['code_id']; ?></td>
+                                                <td><?php echo $value['product_name']; ?></td>
+                                                 <td>
+													 <?php 
+														if($value['parent_id'] !='0'){
+														 //$parent = $parent_name[$value['parent_id']]; echo  $parent['name'].'</br>'. $value['name'];
+														 echo '<strong>'.$parent_name[$value['parent_id']]['name'].'</strong></br>';
+														 echo '--- '.$value['name'];
+														}else{
+														echo  $value['name'];
+														}
+													?>
+													 </td>
+                                                <td>
+                                                    
+                                        <div class='col-sm-9 controls select-pro'>
+                                            <select class='form-control' data-rule-required="true" id="status-pro" onchange="productstatus(<?php echo $value['id']?>)" name='manufa_id'>
+                                                <option <?php if($value['status_pro']=='Đang bán'){ echo 'selected' ;}?> value="Đang bán"> Đang bán</option>
+                                                <option <?php if($value['status_pro']=='Tạm hết hàng'){ echo 'selected' ;}?> value="Tạm hết hàng">Tạm hết hàng</option>
+                                                <option <?php if($value['status_pro']=='Ngừng kinh doanh'){ echo 'selected' ;}?> value="Ngừng kinh doanh"> Ngừng kinh doanh</option>
+                                            </select>
+                                        </div>                                    
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($value['show_index'] == 1) {
+                                                        echo '<a href='.WEB_PATH.'/system/product/showindex/'.$value['id'].'/show='.$value['show_index'].'
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href='.WEB_PATH.'/system/product/showindex/'.$value['id'].'/show='.$value['show_index'].'
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($value['status'] == 1) {
+                                                        echo '<a href='.WEB_PATH.'/system/product/status/'.$value['id'].'/'.$value['status'].'
+                                                        <button class="btn btn-xs btn-success"><i class="icon-check"></i></button></a>';
+                                                    } else {
+                                                        echo '<a href='.WEB_PATH.'/system/product/status/'.$value['id'].'/'.$value['status'].'
+                                                        <button class="btn btn-xs btn-danger"><i class="icon-minus-sign"></i></button></a>';
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td>
+													<?php 
+														echo date('d-m-Y', strtotime($value['date'])).'</br>';
+														if(date('H:i:s', strtotime($value['date'])) != '00:00:00'){
+															echo date('H:i:s', strtotime($value['date']));
+															}
+														?>
+													
+												</td>
+                                                 <td>
+													<?php 
+														echo date('d-m-Y', strtotime($value['date_mod'])).'</br>';
+														if(date('H:i:s', strtotime($value['date_mod'])) != '00:00:00'){
+															echo date('H:i:s', strtotime($value['date_mod']));
+															}
+														?>
+													
+												</td>
+                                                
+                                                <td>
+                                                    <div class='text-right'>
+                                                         <a class='btn btn-info btn-xs' href='<?php echo WEB_PATH; ?>/system/product/view/<?php echo $value['id']; ?>'>
+                                                            <i class='icon-eye-open'></i>
+                                                        </a>
+                                                        <a class='btn btn-primary btn-xs' href='<?php echo WEB_PATH; ?>/system/product/edit/<?php echo $value['id']; ?>'>
+                                                            <i class='icon-edit'></i>
+                                                        </a>
+                                                         <a onclick="trashaction(<?php echo $value['id'] ?>)"class='btn btn-danger btn-xs'>
+                                                            <i class='icon-trash'></i>
+                                                        </a>
+                                                        <a title="Xóa vĩnh viễn" href="<?php echo WEB_PATH .'/system/product/deleteproduct/'. $value['id'] ?>" class='btn btn-danger btn-xs'>
+                                                            <i class="icon-remove"></i>
+                                                        </a>
+                                                    </div>
+                                                   
+                                                </td>
+                                                 <input type="hidden" id="url<?php echo $value['id'] ?>" value="product/trash/<?php echo $value['id'].'/trash-'.$value['delete_pro']; ?>" />
+                                            </tr>
+                                        <?php } ?>
+                                       
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Mã sản phẩm</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th> Danh mục</th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th>Ngày đăng</th>
+                                            <th>Ngày sửa</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!--<div class="col-md-12 sortPagiBar">
+                                    <div class="bottom-pagination">
+                                        <?php
+                                       // echo $this->paginationControl(
+                                                //$paginator, 'Sliding', '/product/index/page/Page.phtml'
+                                        //);
+                                        ?>
+
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- //////////////////DELETE///////////////////--> 
+<div class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  blue-background">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">XÓA SẢN PHẨM</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm này</p>
+
+            </div>
+            <div class="modal-footer ">
+                <span id="btn-del"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+            </div>
+        </div>
+        <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal-dialog --> 
+</div>
+
+
+<style>
+    .select-pro select{
+        font-size: 12px;
+        height: 30px;
+    }
+	#status-pro{
+	width:120px;
+	}
+</style>

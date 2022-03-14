@@ -1,0 +1,88 @@
+<div class="box-slider-left">
+    <div class="box-product">
+        <h2 class="page-heading">
+            <span class="page-heading-title2">Đăng ký tài khoản</span>
+        </h2>
+                <div class="box-contact">
+            <h4 class="top-20">THÔNG TIN TÀI KHOẢN</h4>
+            <p>Nhập thông tin Email và mật khẩu</p>
+            <?php
+            if (isset($error)) {
+                echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+            }
+            ?> 
+            <form class="form-horizontal" role="form" method="post" id="register-form">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Email
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Mật khẩu
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Nhập lại mật khẩu
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" name="passconfirm" id="passconfirm" placeholder="Nhập lại mật khẩu">
+                    </div>
+                </div>
+
+                <h4 class="top-20">THÔNG TIN CÁ NHÂN</h4>
+                <p>Nhập thông tin người nhận, địa chỉ mà bạn muốn chúng tôi chuyển hàng tới</p>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Họ và Tên
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Họ và tên">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        Công ty
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="company" id="name" placeholder="Tên công ty">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Điện thoại
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Điện thoại">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Địa chỉ
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Địa chỉ">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="button btn-send">Tạo tài khoản của tôi
+                        </button>
+                        <button type="reset" class="button btn-send">Nhập lại</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>

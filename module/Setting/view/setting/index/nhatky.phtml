@@ -1,0 +1,144 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span> Nhật ký hoạt động</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <!--<ul class='breadcrumb'>
+                            <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>                                                  
+
+                        </ul>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <?php
+                    if (isset($alert)) {
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>-->
+                        <!-- <button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                       <div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+                        <div class="alert alert-info alert-dismissable">Hãy chọn ngày tháng muốn xem nhật ký hoạt động. Nhật ký hoạt động sẽ được ghi lại theo từng ngày.</div>
+                        <form method="post" id="form-admin" class='form form-horizontal validate-form' style='margin-bottom: 0;' enctype="multipart/form-data">
+
+                            <div class="row" style="margin: 0px;">
+                                <div class='form-group col-sm-4'>
+                                    <div class='datepicker input-group' id='datepicker'>
+                                        <input class='form-control' data-format='dd-MM-yyyy' data-rule-required="true" id="valid" placeholder='Select date' name="date-time" type='text'>
+                                        <span class='input-group-addon'>
+                                            <span data-date-icon='icon-calendar' data-time-icon='icon-time'></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class='form-group col-sm-4'>
+                                    <button class="btn btn-success">Xem nhật ký</button>
+                                </div>
+                            </div>
+                        </form>
+                        <?php if (isset($error)) { ?>
+                            <div class="alert alert-warning alert-dismissable"><?php echo $error ?></div>
+                        <?php } ?>
+                        <?php if (isset($data)) { ?>
+                            <div class='box-content box-no-padding'>
+                                <div class='responsive-table'>
+                                    <div class='scrollable-area'>
+                                        <table  class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Tên đăng nhập
+                                                    </th>
+                                                    <th>
+                                                        IP
+                                                    </th>
+                                                    <th>
+                                                        Ngày giờ
+                                                    </th>
+                                                    <th>
+                                                        Thao tác
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+                                                foreach ($data as $key => $value) {
+                                                    $data_view = explode("-----", $value);
+                                                    ?>
+
+                                                    <tr>
+                                                        <td><?php echo $data_view['0']; ?></td>
+                                                        <td><?php echo $data_view['1']; ?></td>
+                                                        <td><?php echo $data_view['2']; ?></td>
+                                                        <td><?php echo $data_view['3']; ?></td>
+
+                                                    </tr>
+                                                <?php } ?>
+
+                                            </tbody>
+                                            <tfoot>
+                                        <tr>
+                                            <th>Tên đăng nhập</th>
+                                            <th>IP</th>
+                                            <th>Ngày giờ</th>
+                                            <th> Thao tác</th>
+                                            
+                                        </tr>
+                                    </tfoot>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>
+<style>
+    .nhatky{
+        list-style:none;
+        padding-left: 0px;
+    }
+    .nhatky li{
+        padding-left: 15px;
+        line-height: 40px;
+        margin-bottom: 1px;
+    }
+    .nhatky li:nth-child(odd){
+        background: #D9EDF7;
+        color: #3a87ad;
+    }
+    .nhatky li:nth-child(even){
+        background: #dff0d8;
+        color: #3c763d;
+    }
+</style>

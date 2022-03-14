@@ -1,0 +1,189 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span>Sửa tin tức</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>
+                            <li>
+                                <a href='<?php echo WEB_PATH ?>/system/news'>
+                                    <button class="btn btn-danger"><i class="icon-arrow-left"></i> Quay lại</button>
+                                </a>
+                            </li>                        
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                    <?php
+                    if (isset($alert)) {
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>-->
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>
+                        <button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                        <!--<div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+                        <form method="post" id="form-admin" enctype="multipart/form-data" class='form form-horizontal validate-form' style='margin-bottom: 0;'>
+                            <div class="content-tab tab-content1">
+                                <div class="row">   
+                                    <div class='form-group col-sm-6'>
+                                        <label class='control-label col-sm-3' for='validation_name'>Tiêu đề</label>
+                                        <div class='col-sm-9 controls'>
+                                            <input class='form-control' data-rule-minlength='2' data-rule-required='true' value="<?php echo $data_detail['news_title'] ?>" id='validation_name' name="title"  placeholder='tiêu đề' type='text' >
+                                        </div>
+                                    </div>
+                                    <div class='form-group col-sm-6'>
+                                        <label class='control-label col-sm-3' for='validation_select'>Danh mục</label>
+                                        <div class='col-sm-9 controls'>
+                                            <select class='form-control' data-rule-required="true" id="validation_select"  name='cat_id'>
+                                                <option></option>
+                                                <?php foreach ($data as $key => $value) { ?>
+                                                    <option <?php
+                                                    if ($data_detail['news_catid'] == $value['id']) {
+                                                        echo 'selected';
+                                                    }
+                                                    ?> value="<?php echo $value['id']; ?>"><?php echo $value['name'] ?></option>
+                                                    <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--<div class="form-group col-sm-6">
+                                        <label class="col-md-3 control-label">Tin nổi bật</label>
+                                        <div class="col-sm-9">
+                                            <label class="radio radio-inline">
+                                                <input type="radio" value="1" name="new_featured" <?php
+                                    if ($data_detail['news_featured'] == 1) {
+                                        echo 'checked';
+                                    }
+                                    ?> >
+                                                Có
+                                            </label>
+                                            <label class="radio radio-inline">
+                                                <input type="radio" value="0" name="new_featured" <?php
+                                    if ($data_detail['news_featured'] == 0) {
+                                        echo 'checked';
+                                    }
+                                    ?>>
+                                                Không 
+                                            </label>
+    
+                                        </div>
+                                    </div>-->
+                                    <div class='form-group col-sm-6'>
+                                        <label class='control-label  col-sm-3' for='validation_name'>Ảnh mô tả</label>
+                                        <div class='col-sm-3 controls'>                                                                                                           
+                                            <span class='btn btn-success fileinput-button'>
+                                                <i class='icon-upload-alt icon-white'></i>
+                                                <span> Chọn ảnh...</span>
+                                                <input data-bfi-disabled='' multiple='' name='img' id="asd" type='file'>
+                                            </span>
+
+                                        </div>
+                                        <div class="col-sm-6"><img style="width:100%"id="img" src="<?php echo WEB_IMG . $data_detail['news_img'] ?>" /></div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-md-3 control-label">Trạng thái</label>
+                                        <div class="col-sm-9">
+                                            <label class="radio radio-inline">
+                                                <input type="radio" value="1" name="status" <?php
+                                                if ($data_detail['news_status'] == 1) {
+                                                    echo 'checked';
+                                                }
+                                                ?>>
+                                                Hiển thị
+                                            </label>
+                                            <label class="radio radio-inline">
+                                                <input type="radio" value="0" name="status" <?php
+                                                if ($data_detail['news_status'] == 0) {
+                                                    echo 'checked';
+                                                }
+                                                ?>>
+                                                Không  hiển thị
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>                         
+
+
+                                <div class="row">
+                                    <div class='form-group col-sm-12'>
+                                        <label class="col-sm-2 control-label">Mô tả tóm tắt</label>
+                                        <div class="box-content col-sm-10">
+                                            <textarea class="form-control" data-rule-required="true" id="validation_name7" placeholder="Explain" name="description" rows="5"><?php echo $data_detail['news_descripion'] ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class='form-group col-sm-12'>
+                                        <label class="col-md-2 control-label">Nội dung</label>
+                                        <div class="box-content col-sm-10">
+                                            <textarea name="content" class="form-control ckeditor" id="wysiwyg1" rows="10" >
+                                                <?php echo $data_detail['news_contents'] ?>
+                                            </textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="content-tab tab-content2">
+                                <div class="row">
+                                    <div class='form-group col-sm-12'>
+                                        <label class="col-sm-2 control-label">Seo Title</label>
+                                        <div class="box-content col-sm-8">
+                                            <textarea class="form-control"  id="validation_name7" placeholder="Seo Title" name="seo_title" rows="5"><?php echo $data_detail['seo_title'] ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class='form-group col-sm-12'>
+                                        <label class="col-sm-2 control-label">Meta Keyword</label>
+                                        <div class="box-content col-sm-8">
+                                            <textarea class="form-control"  id="validation_name7" placeholder="Seo Keyword" name="seo_keyword" rows="5"><?php echo $data_detail['seo_keyword'] ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class='form-group col-sm-12'>
+                                        <label class="col-sm-2 control-label">Meta Description</label>
+                                        <div class="box-content col-sm-8">
+                                            <textarea class="form-control"  id="validation_name7" placeholder="Seo description" name="seo_description" rows="5"><?php echo $data_detail['seo_description'] ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

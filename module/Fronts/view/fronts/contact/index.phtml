@@ -1,0 +1,136 @@
+<!--<div class="box-slider-left">
+    <div class="box-product">
+        <h3 class="title-product-3">
+            <span>Thông tin liên hệ</span>
+        </h3>
+        <div class="box-contact">
+            <p>Website : <?php echo $setting->website_url; ?></p>
+            <p>Địa chỉ : <?php echo $setting->address; ?></p>
+            <p>Điện thoại : <?php echo $setting->phone1?></p>
+            <p>Mobile :<?php echo $setting->phone2?></p>
+            <p>Email :<?php echo $setting->email?></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="box-product">
+        <h3 class="title-product-3">
+            <span>Thông tin phản hồi</span>
+        </h3>
+        <div class="box-contact">
+            <p>Xin vui lòng điền các yêu cầu vào form dưới đây và gửi cho chúng tôi. Chúng tôi sẽ trả lời bạn ngay sau khi nhận được. Xin chân thành cảm ơn!</p>
+           <?php
+           if(isset($alert)){ echo $alert; }
+           ?>
+            <form class="form-horizontal" role="form" method="post" id="send-contact">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Họ tên
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="họ và tên">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Địa chỉ
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="địa chỉ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">
+                        <span>*</span> Số điện thoại
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="số điện thoại">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">
+                        <span>*</span> Email
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="col-sm-2 control-label">
+                        <span>*</span> Nội dung
+                    </label>
+                    <div class="col-sm-10">
+                        <textarea name="content" id="content" class="form-control" rows="5" placeholder="nội dung"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-send">Gửi
+                        </button>
+                        <button type="submit" class="btn btn-send">Nhập lại
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>-->
+  <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">Liên hệ</span>
+        </h2>
+        <!-- ../page heading-->
+        <div id="contact" class="page-content page-contact">
+            <div id="message-box-conact"> 
+                <?php
+           if(isset($alert)){ echo $alert; }
+           ?>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="page-subheading"> Thông tin liên hệ</h3>
+                    <div class="contact-form-box">  
+                        <form action="" method="post" id="form-contact">
+                        <div class="form-selector">
+                            <label>Họ tên<span>*</span></label>
+                            <input type="text" class="form-control input-sm" name="name" id="name" placeholder="Họ tên" />
+                        </div>
+                         <div class="form-selector">
+                            <label>Điện thoại<span>*</span></label>
+                            <input type="text" class="form-control input-sm" name="phone" id="phone" placeholder="Điện thoại" />
+                        </div>
+                         <div class="form-selector">
+                            <label>Địa chỉ<span>*</span></label>
+                            <input type="text" class="form-control input-sm" name="address" id="address" placeholder="Địa chỉ" />
+                        </div>
+                        <div class="form-selector">
+                            <label>Email<span>*</span></label>
+                            <input type="email" class="form-control input-sm" name="email" id="email" placeholder="Email"/>
+                        </div>                        
+                        <div class="form-selector">
+                            <label>Nội dung<span>*</span></label>
+                            <textarea class="form-control input-sm" rows="10" id="content" name="content" placeholder="Nội dung"></textarea>
+                        </div>
+                        <div class="form-selector">
+                            <button type="submit" id="btn-send-contact" class="btn"> Gửi đi</button>
+                            <button type="reset" id="btn-send-contact" class="btn"> Nhập lại</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6" id="contact_form_map">
+                    <h3 class="page-subheading"></h3>
+                    <p>Xin vui lòng điền các yêu cầu vào form dưới đây và gửi cho chúng tôi. Chúng tôi sẽ trả lời bạn ngay sau khi nhận được. Xin chân thành cảm ơn!</p>
+                    
+                    <br/>
+                    <ul class="store_info">
+                        <li><i class="fa fa-globe"></i>Website: <span><a href="http://<?php echo $setting->website_url?>"><?php echo $setting->website_url?></a></span></li>
+                        <li><i class="fa fa-home"></i><span> <?php echo $setting->address; ?></span></li>
+                        <li><i class="fa fa-phone"></i><span> <?php echo $setting->phone1; ?></span></li>
+                        <li><i class="fa fa-phone"></i><span><?php echo $setting->phone2?></span></li>
+                        <li><i class="fa fa-envelope"></i>Email: <span><a href="mailto:%73%75%70%70%6f%72%74@%6b%75%74%65%74%68%65%6d%65.%63%6f%6d"><?php echo $setting->email?></a></span></li>
+                    </ul>                
+                    </div>
+            </div>
+        </div>

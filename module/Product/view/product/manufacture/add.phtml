@@ -1,0 +1,137 @@
+<div class='row' id='content-wrapper'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='page-header'>
+                    <h1 class='pull-left'>
+                        <i class='icon-plus'></i>
+                        <span>Thêm mới hãng sản xuất</span>
+                    </h1>
+                    <div class='pull-right'>
+                        <ul class='breadcrumb'>
+                            <li>                                
+                                <button class="btn btn-primary" onclick="submitform()"><i class="icon-save"></i> Lưu</button>
+                            </li> 
+                            <li>                                
+                                <button class="btn btn-primary" onclick="resetform()"><i class="icon-refresh"></i> Nhập lại</button>
+                            </li>
+                            <li>
+                                <a href='<?php echo WEB_PATH.'/system/product/manufacture'?>'>
+                                    <button class="btn btn-primary"><i class="icon-arrow-left"></i> Quay lại</button>
+                                    
+                                </a>
+                             </li> 
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box'>
+                     <?php
+                    if(isset($alert)){
+                        echo $alert;
+                    }
+                    ?>
+                    <div class='box-header'>
+                        <!--<div class='title'>Add User</div>-->
+                        <button rel=".tab-content1" class="btn background-new">Thông tin chung</button>
+                        <button rel=".tab-content2" class="btn">Cấu hình SEO</button>
+                        <!--<div class='actions'>
+                            <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                            </a>
+
+                            <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                            </a>
+                        </div>-->
+                    </div>
+                    <div class='box-content'>
+                        <form method="post" id="form-admin" class='form form-horizontal validate-form' style='margin-bottom: 0;' enctype="multipart/form-data">
+                            <div class="content-tab tab-content1">
+                            <div class="row">   
+                                <div class='form-group col-sm-12'>
+                                    <label class='control-label col-sm-3' for='validation_name'>Tên hãng sản xuất</label>
+                                    <div class='col-sm-6 controls'>
+                                        <input class='form-control' data-rule-minlength='2' data-rule-required='true' id='validation_name' name="manu_name"  placeholder='Tên hãng sản xuất' type='text' >
+                                    </div>
+                                </div>                                
+                           
+                            
+                                <div class="form-group col-sm-12">
+                                    <label class="col-md-3 control-label">Trạng thái</label>
+                                    <div class="col-sm-6">
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="1" name="status" checked>
+                                            Hiển thị
+                                        </label>
+                                        <label class="radio radio-inline">
+                                            <input type="radio" value="0" name="status">
+                                            Không  hiển thị
+                                        </label>
+
+                                    </div>
+                                </div>
+                                
+                                <div class='form-group col-sm-12'>
+                                    <label class='control-label  col-sm-3' for='validation_name'>Ảnh mô tả</label>
+                                    <div class='col-sm-2 controls'>                                                                                                           
+                                        <span class='btn btn-success fileinput-button'>
+                                            <i class='icon-upload-alt icon-white'></i>
+                                            <span> Chọn ảnh...</span>
+                                            <input data-bfi-disabled='' multiple='' name='img' id="asd" type='file'>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-sm-4"><img style="width:100%"id="img" src="" /></div>
+                                </div>
+                           
+                            </div>                         
+
+                           
+                            <div class="row">
+                                <div class='form-group col-sm-12'>
+                                    <label class="col-sm-3 control-label">Mô tả </label>
+                                    <div class="box-content col-sm-6">
+                                        <textarea class="form-control" data-rule-required="true" id="validation_name7" placeholder=" Mô tả" name="description" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+                            </div>
+                            <div class="content-tab tab-content2">
+                                <div class="row">
+                                <div class='form-group col-sm-12'>
+                                    <label class="col-sm-2 control-label">Tiêu đê</label>
+                                    <div class="box-content col-sm-8">
+                                        <textarea class="form-control" data-rule-required="true" id="validation_name7" placeholder="" name="seo_tile" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="row">
+                                <div class='form-group col-sm-12'>
+                                    <label class="col-sm-2 control-label">Meta Keyword</label>
+                                    <div class="box-content col-sm-8">
+                                        <textarea class="form-control" data-rule-required="true" id="validation_name7" placeholder="" name="seo_keyword" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="row">
+                                <div class='form-group col-sm-12'>
+                                    <label class="col-sm-2 control-label">Meta Description</label>
+                                    <div class="box-content col-sm-8">
+                                        <textarea class="form-control" data-rule-required="true" id="validation_name7" placeholder="" name="seo_description" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>              
+    </div>
+</div>

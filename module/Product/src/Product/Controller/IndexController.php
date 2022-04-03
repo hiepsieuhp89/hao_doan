@@ -682,7 +682,7 @@
 			$ext = substr(strrchr($filename, '.'), 1);
 			$fileupload =  time($filename) . '.' . $ext;
 			if ($filename == null) {
-				echo 'error2';
+				echo 'error';
 				die;
 			}
 			/*if (move_uploaded_file($tmpimg, "$dirpath/images/$fileupload")) {

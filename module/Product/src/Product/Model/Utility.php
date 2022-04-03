@@ -291,7 +291,7 @@ return preg_replace('([^a-zA-Z0-9])', '-', $link);
         $name_file = $array_date['2'] . '-' . $array_date['1'] . '-' . $array_date['0'] . '.txt';
         
         //ghi file log đã tạo khi login
-         $fp = fopen($parth_forder . '/' . $name_file, 'a') or exit('Error');
+         $fp = fopen($parth_forder . '/' . $name_file, 'a') or exit('Error2');
                 $string = $username . ' ----- '.$ip_client.' ----- ' . date('Y-m-d H:i:s') . ' ----- '.$text;
                 fwrite($fp, $string . "\r\n");
                 fclose($fp);

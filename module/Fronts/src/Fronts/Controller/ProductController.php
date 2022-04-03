@@ -70,6 +70,7 @@ class ProductController extends AbstractActionController {
         $select = new Select();
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
         $data_product = $this->getProductTable()->show_product();
+        var_dump($data_product);
 
         $itemsPerPage = 20;
         $data_product->current();

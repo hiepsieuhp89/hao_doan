@@ -281,20 +281,20 @@ return preg_replace('([^a-zA-Z0-9])', '-', $link);
     }	
 	
 	public function witelog($text){
-        $session_ip = new Container('S_IP');
-        $ip_client = $session_ip->ip_client;
+        // $session_ip = new Container('S_IP');
+        // $ip_client = $session_ip->ip_client;
         
-         $session_user = new Container('user');
-         $username = $session_user->username;
-        $array_date = explode('-', date('Y-m-d'));       
-        $parth_forder = WEB_MEDIA . '/public/log/Thang-' . $array_date['1'] . '-' . $array_date['0'];
-        $name_file = $array_date['2'] . '-' . $array_date['1'] . '-' . $array_date['0'] . '.txt';
+        //  $session_user = new Container('user');
+        //  $username = $session_user->username;
+        // $array_date = explode('-', date('Y-m-d'));       
+        // $parth_forder = WEB_MEDIA . '/public/log/Thang-' . $array_date['1'] . '-' . $array_date['0'];
+        // $name_file = $array_date['2'] . '-' . $array_date['1'] . '-' . $array_date['0'] . '.txt';
         
-        //ghi file log đã tạo khi login
-         $fp = fopen($parth_forder . '/' . $name_file, 'a') or exit('Error2');
-                $string = $username . ' ----- '.$ip_client.' ----- ' . date('Y-m-d H:i:s') . ' ----- '.$text;
-                fwrite($fp, $string . "\r\n");
-                fclose($fp);
+        // //ghi file log đã tạo khi login
+        //  $fp = fopen($parth_forder . '/' . $name_file, 'a') or exit('Error2');
+        //         $string = $username . ' ----- '.$ip_client.' ----- ' . date('Y-m-d H:i:s') . ' ----- '.$text;
+        //         fwrite($fp, $string . "\r\n");
+        //         fclose($fp);
     }
 	
 }

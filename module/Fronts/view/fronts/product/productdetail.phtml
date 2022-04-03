@@ -146,9 +146,6 @@ $phone_user = $session_user->phone;
                         <div class="fb-like" data-href="<?php echo WEB_PATH . '/san-pham/' . $product_detail['alias'] . '.html' ?>" data-layout="button_count"></div>
                         <div class="fb-share-button" data-href="<?php echo WEB_PATH . '/san-pham/' . $product_detail['alias'] . '.html' ?>" data-layout="button_count"></div>
                     </div>
-                    <div class="product-desc">
-                        <?php echo $product_detail['description'] ?>
-                    </div>
                     <div class="form-option">               
                         <div class="attributes">
                             <div class="attribute-label">Số lượng:</div>
@@ -169,7 +166,9 @@ $phone_user = $session_user->phone;
 
                 </div>
             </div>
-            
+            <div class="product-desc">
+                <?php echo $product_detail['description'] ?>
+            </div>
             <!-- tab product -->
             <div class="product-tab">
                 <ul class="nav-tab">
